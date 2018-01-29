@@ -1,19 +1,13 @@
-const Lime = [
-  '#fcffe6',
-  '#f4ffb8',
-  '#eaff8f',
-  '#d3f261',
-  '#bae637',
-  '#a0d911',
-  '#7cb305',
-  '#5b8c00',
-  '#3f6600',
-  '#254000'
-]
 
 const Theme = {
   colors: {
-    accent: Lime
+    accent: [
+      '#CDF7F6',
+      '#8FB8DE',
+      '#5DD9C1'
+    ],
+    main: '#FFFBFE',
+    secondary: '#393E41'
   }
 }
 
