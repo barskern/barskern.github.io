@@ -1,17 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeProvider } from 'styled-components'
-import { Layout, Icon } from 'antd'
+import { Layout } from 'antd'
 import theme from '../theme.js'
 
 import '../css/prism-okaidia.css'
 import 'typeface-roboto'
 
-const { Header, Content, Footer, Sider } = Layout
+import CustomHeader from './header'
+import CustomSider from './sider'
+import CustomFooter from './footer'
 
-const Toggler = styled(Icon)`
-  color: white;
-  font-size: 1.8em;
+const { Content } = Layout
+
+const RootLayout = styled(Layout)`
+  height: 100vh;
+  width: 100vw;
 `
 
 class Template extends React.Component {
@@ -29,24 +33,21 @@ class Template extends React.Component {
 
   render () {
     const { children } = this.props
+    const { siderCollapsed } = this.state
+
     return (
       <ThemeProvider theme={theme}>
-        <Layout>
-          <Sider
-            collapsed={this.state.siderCollapsed}
-            collapsible
-            collapsedWidth={0}
-            trigger={null}></Sider>
+        <RootLayout>
+          <CustomSider
+            siderCollapsed={siderCollapsed} />
           <Layout>
-            <Header>
-              <Toggler
-                type={this.state.siderCollapsed ? 'menu-unfold' : 'menu-fold'}
-                onClick={this.toggleSider.bind(this)}></Toggler>
-            </Header>
+            <CustomHeader
+              siderCollapsed={siderCollapsed}
+              toggleSider={this.toggleSider.bind(this)} />
             <Content>{children()}</Content>
-            <Footer></Footer>
+            <CustomFooter />
           </Layout>
-        </Layout>
+        </RootLayout>
       </ThemeProvider>
     )
   }
