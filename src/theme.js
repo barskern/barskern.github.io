@@ -8,6 +8,9 @@ const Theme = {
     ],
     main: '#FFFBFE',
     secondary: '#393E41'
+  },
+  font: {
+    special: 'Beyno'
   }
 }
 
