@@ -12,7 +12,7 @@ const StyledHeader = styled(Header)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 0.8em;
+  padding: 0 5px;
   background-color: ${({theme}) => theme.colors.secondary};
   box-shadow: 0px 0px 25px rgba(0,0,0,.4);
   z-index: 100;
@@ -25,6 +25,7 @@ const PageTitle = styled.h1`
   font-size: 2em;
   margin: 0;
   margin-left: 2em;
+  cursor: pointer;
 `
 
 const CustomHeader = ({ siderCollapsed, toggleSider }) =>

@@ -6,6 +6,7 @@ import { Icon } from 'antd'
 const Toggler = styled.div`
   height: 1.8em;
   display: flex;
+  cursor: pointer;
 `
 
 const StyledIcon = styled(Icon)`
