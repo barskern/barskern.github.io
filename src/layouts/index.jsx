@@ -9,6 +9,8 @@ import CustomSider from './Asider'
 import 'typeface-roboto'
 import '../css/prism-okaidia.css'
 
+import styles from './style.less'
+
 const { Content } = Layout
 
 class Template extends React.Component {
@@ -29,7 +31,7 @@ class Template extends React.Component {
     const { siderCollapsed } = this.state
 
     return (
-      <Layout>
+      <Layout className={styles['full-page']}>
         <CustomSider
           siderCollapsed={siderCollapsed}
         />

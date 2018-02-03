@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 
-const PostPreview = ({ title, date, author, path, excerpt }) => {
+const PostPreview = (props) => {
+  const { title, date, author, path, excerpt } = props
   return (
     <div>
       <Link to={path}>
