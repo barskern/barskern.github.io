@@ -56,6 +56,17 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-antd`
+    {
+      resolve: `gatsby-plugin-antd`,
+      options: {
+        style: true
+      }
+    },
+    {
+      resolve: `gatsby-plugin-less`,
+      options: {
+        theme: './src/theme.js'
+      }
+    }
   ]
 }
