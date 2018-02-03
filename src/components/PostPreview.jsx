@@ -16,7 +16,7 @@ const Author = styled.small`
   }
 `
 const Excerpt = styled.p`
-  color: ${props => props.theme.colors.accent[9]}
+  color: ${({ theme }) => theme['text-color']}
 `
 
 const PostPreview = ({ title, date, author, path, excerpt }) => {
@@ -36,5 +36,6 @@ PostPreview.propTypes = {
   title: PropTypes.string,
   author: PropTypes.string,
   path: PropTypes.string,
-  date: PropTypes.string
+  date: PropTypes.string,
+  excerpt: PropTypes.string
 }

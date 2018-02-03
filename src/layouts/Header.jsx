@@ -9,8 +9,8 @@ import MenuToggler from '../components/MenuToggler'
 const { Header } = Layout
 
 const PageTitle = styled.h1`
-  color: ${({theme}) => theme.colors.accent[0]};
-  font-family: ${({theme}) => theme.font.special};
+  color: ${({theme}) => theme['text-color']};
+  font-family: ${({theme}) => theme.custom.font.logo};
   white-space: nowrap;
   font-size: 2em;
   margin: 0;
