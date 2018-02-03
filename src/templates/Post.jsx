@@ -8,7 +8,6 @@ const BlogPost = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
 
   const { post } = data
-
   const { title, author } = post.frontmatter
   const { path, date } = post.fields
   const tabTitle = title || siteTitle
@@ -20,7 +19,7 @@ const BlogPost = ({ data }) => {
         <h1>{title}</h1>
       </Link>
       <small>
-        {date} {author}
+        {date} written by {author}
       </small>
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
     </div>

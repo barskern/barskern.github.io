@@ -1,31 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
-import styled from 'styled-components'
-
-const Title = styled(Link)`
-  display: block;
-  text-decoration: none;
-  font-size: 1.2em;
-  color: black;
-`
-const Date = styled.small``
-const Author = styled.small`
-  &:before {
-    content: ' ';
-  }
-`
-const Excerpt = styled.p`
-  color: ${({ theme }) => theme['text-color']}
-`
 
 const PostPreview = ({ title, date, author, path, excerpt }) => {
   return (
     <div>
-      <Title to={path}>{title}</Title>
-      <Date>{date}</Date>
-      <Author>{author}</Author>
-      <Excerpt dangerouslySetInnerHTML={{ __html: excerpt }} />
+      <Link to={path}>
+        <h2>{title}</h2>
+      </Link>
+      <small>{date} written by {author}</small>
+      <p dangerouslySetInnerHTML={{ __html: excerpt }} />
     </div>
   )
 }
@@ -33,9 +17,9 @@ const PostPreview = ({ title, date, author, path, excerpt }) => {
 export default PostPreview
 
 PostPreview.propTypes = {
-  title: PropTypes.string,
-  author: PropTypes.string,
-  path: PropTypes.string,
-  date: PropTypes.string,
-  excerpt: PropTypes.string
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  excerpt: PropTypes.string.isRequired
 }

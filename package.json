@@ -8,7 +8,6 @@
     "gatsby": "^1.9.178",
     "gatsby-link": "^1.6.8",
     "gatsby-plugin-antd": "^1.0.10",
-    "gatsby-plugin-google-analytics": "^1.0.4",
     "gatsby-plugin-less": "^1.1.2",
     "gatsby-plugin-manifest": "^1.0.4",
     "gatsby-plugin-offline": "^1.0.4",
@@ -16,7 +15,6 @@
     "gatsby-plugin-preact": "^1.0.3",
     "gatsby-plugin-react-helmet": "^1.0.3",
     "gatsby-plugin-sharp": "^1.6.2",
-    "gatsby-plugin-styled-components": "^2.0.4",
     "gatsby-remark-copy-linked-files": "^1.5.2",
     "gatsby-remark-images": "^1.5.4",
     "gatsby-remark-prismjs": "^1.2.1",
@@ -26,7 +24,6 @@
     "gatsby-transformer-remark": "^1.7.1",
     "gatsby-transformer-sharp": "^1.6.1",
     "prop-types": "^15.6.0",
-    "styled-components": "^2.4.0",
     "typeface-roboto": "0.0.50"
   },
   "devDependencies": {

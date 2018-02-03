@@ -10,7 +10,7 @@ class BlogIndex extends React.Component {
     const { data } = this.props
 
     const siteTitle = data.site.siteMetadata.title
-    const markdownNodes = data.allMarkdownRemark.edges
+    const markdownNodes = data.posts.edges
 
     return (
       <div>
@@ -40,7 +40,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark {
+    posts: allMarkdownRemark {
       edges {
         node {
           excerpt
