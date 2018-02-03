@@ -6,15 +6,8 @@
       "jsx": true
     }
   },
-  "extends": "standard",
-  "plugins": [
-    "react"
-  ],
-  "globals": {
-    "graphql": false
-  },
-  "rules": {
-    "react/jsx-uses-vars": "error",
-    "react/jsx-uses-react": "error"
-  }
+  "extends": [
+    "standard",
+    "plugin:react/recommended"
+  ]
 }

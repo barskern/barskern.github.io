@@ -5,7 +5,7 @@
   "author": "Ole Martin Ruud <barskern@outlook.com>",
   "dependencies": {
     "antd": "^3.1.3",
-    "gatsby": "^1.8.12",
+    "gatsby": "^1.9.178",
     "gatsby-link": "^1.6.8",
     "gatsby-plugin-antd": "^1.0.10",
     "gatsby-plugin-google-analytics": "^1.0.4",

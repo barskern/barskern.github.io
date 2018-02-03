@@ -7,7 +7,7 @@ import Link from 'gatsby-link'
 const BlogPost = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
 
-  const post = data.markdownRemark
+  const { post } = data
 
   const { title, author } = post.frontmatter
   const { path, date } = post.fields
@@ -40,7 +40,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    markdownRemark(id: { eq: $id }) {
+    post: markdownRemark(id: { eq: $id }) {
       html
       fields {
         path

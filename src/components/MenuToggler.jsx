@@ -9,17 +9,11 @@ const Toggler = styled.div`
   cursor: pointer;
 `
 
-const StyledIcon = styled(Icon)`
-  display: block;
-  color: ${({theme}) => theme.colors.accent[2]};
-  font-size: 1.8em;
-`
-
 const MenuToggler = ({ siderCollapsed, toggleSider }) =>
   <Toggler onClick={toggleSider}>
-    <StyledIcon type='left'/>
-    { !siderCollapsed && <StyledIcon type='close'/> }
-    <StyledIcon type='right'/>
+    <Icon type='left'/>
+    { !siderCollapsed && <Icon type='close'/> }
+    <Icon type='right'/>
   </Toggler>
 
 MenuToggler.propTypes = {
