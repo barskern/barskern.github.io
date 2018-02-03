@@ -7,13 +7,13 @@ const { Sider } = Layout
 const CustomSider = ({ siderCollapsed }) =>
   <Sider
     collapsed={siderCollapsed}
-    collapsible
+    collapsible={true}
     collapsedWidth={0}
-    trigger={null}>
-  </Sider>
+    trigger={null}
+  />
 
 CustomSider.propTypes = {
-  siderCollapsed: PropTypes.bool.isRequired
+  siderCollapsed: PropTypes.bool
 }
 
 export default CustomSider

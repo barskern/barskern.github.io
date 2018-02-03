@@ -25,7 +25,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           console.log(result.errors)
           reject(result.errors)
         }
-        const post = path.resolve('./src/templates/Post.jsx')
+        const post = path.resolve('./src/templates/Post/index.jsx')
 
         result.data.allMarkdownRemark.edges.forEach(edge => {
           const { id, fields } = edge.node

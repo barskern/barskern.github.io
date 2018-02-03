@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Layout } from 'antd'
 
 import CustomHeader from './Header'
-import CustomSider from './Sider'
 import CustomFooter from './Footer'
+import CustomSider from './Asider'
 
 import 'typeface-roboto'
 import '../css/prism-okaidia.css'
@@ -31,7 +31,8 @@ class Template extends React.Component {
     return (
       <Layout>
         <CustomSider
-          siderCollapsed={siderCollapsed} />
+          siderCollapsed={siderCollapsed}
+        />
         <Layout>
           <CustomHeader
             siderCollapsed={siderCollapsed}

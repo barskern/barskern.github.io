@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Layout } from 'antd'
 import Link from 'gatsby-link'
 
-import MenuToggler from '../components/MenuToggler'
+import MenuToggler from '../../components/MenuToggler'
 
 const { Header } = Layout
 
