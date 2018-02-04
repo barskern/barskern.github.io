@@ -18,7 +18,7 @@ const MenuToggler = (props) => {
 }
 
 MenuToggler.propTypes = {
-  siderCollapsed: PropTypes.bool.isRequired,
+  isMenuClosed: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string
 }

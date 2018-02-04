@@ -35,11 +35,11 @@ class Template extends React.Component {
         <CustomSider
           siderCollapsed={siderCollapsed}
         />
-        <Layout>
+        <Layout style={{ overflowX: 'hidden' }}>
           <CustomHeader
             siderCollapsed={siderCollapsed}
             toggleSider={this.toggleSider.bind(this)} />
-          <Content>{children()}</Content>
+          <Content style={{ width: '100vw' }}>{children()}</Content>
           <CustomFooter />
         </Layout>
       </Layout>
