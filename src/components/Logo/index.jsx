@@ -1,15 +1,19 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
-import styles from './style.less'
-
-const Logo = (props) => {
-  const altProps = {...props, className: `${props.className} ${styles['logo']}`}
-  return (<div {...altProps}>barskern</div>)
+const style = {
+  display: 'block',
+  fontFamily: '"Beyno", "monospace"',
+  fontSize: '36px',
+  cursor: 'pointer',
+  paddingTop: '9px'
 }
 
-Logo.propTypes = {
-  className: PropTypes.string
-}
+const Logo = () =>
+  <div style={style}>
+    barskern
+  </div>
+
+Logo.propTypes = {}
 
 export default Logo
