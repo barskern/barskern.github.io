@@ -26,11 +26,11 @@ class MenuToggler extends React.Component {
     }
   }
   handleMouseEnter () {
-    this.setState((prev) => ({...prev, isHovered: true}))
+    this.setState((prevState) => ({...prevState, isHovered: true}))
   }
 
   handleMouseLeave () {
-    this.setState((prev) => ({...prev, isHovered: false}))
+    this.setState((prevState) => ({...prevState, isHovered: false}))
   }
 
   render () {

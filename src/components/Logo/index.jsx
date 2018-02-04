@@ -1,5 +1,5 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 const style = {
   display: 'block',
@@ -9,11 +9,13 @@ const style = {
   paddingTop: '9px'
 }
 
-const Logo = () =>
-  <div style={style}>
+const Logo = (props) =>
+  <div {...props} style={style}>
     barskern
   </div>
 
-Logo.propTypes = {}
+Logo.propTypes = {
+  onClick: PropTypes.func
+}
 
 export default Logo
