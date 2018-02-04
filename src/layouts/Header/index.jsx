@@ -8,13 +8,16 @@ import Logo from '../../components/Logo'
 
 const { Header } = Layout
 
+const style = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  zIndex: 6
+}
+
 const CustomHeader = ({ siderCollapsed, toggleSider }) =>
   <Header
-    style={{
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center'
-    }}>
+    style={style}>
     <MenuToggler
       isMenuClosed={siderCollapsed}
       onClick={toggleSider} />

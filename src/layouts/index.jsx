@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Layout } from 'antd'
+import { Layout, Divider } from 'antd'
+import graphql from 'graphql'
 
 import CustomHeader from './Header'
 import CustomFooter from './Footer'
@@ -14,8 +15,8 @@ import './style.less'
 const { Content } = Layout
 
 class Template extends React.Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       siderCollapsed: true
     }
@@ -27,8 +28,9 @@ class Template extends React.Component {
   }
 
   render () {
-    const { children } = this.props
+    const { children, data } = this.props
     const { siderCollapsed } = this.state
+    const { pageAuthor, pageAuthorAvatar } = data
 
     return (
       <Layout style={{
@@ -38,12 +40,15 @@ class Template extends React.Component {
         <CustomSider
           siderCollapsed={siderCollapsed}
         />
-        <Layout style={{ overflowX: 'hidden' }}>
+        <Layout style={{ width: '100vw' }}>
           <CustomHeader
             siderCollapsed={siderCollapsed}
             toggleSider={this.toggleSider.bind(this)} />
-          <Content style={{ width: '100vw' }}>{children()}</Content>
-          <CustomFooter />
+          <Content>{children()}</Content>
+          <Divider />
+          <CustomFooter
+            authorInfo={pageAuthor}
+            authorAvatar={pageAuthorAvatar} />
         </Layout>
       </Layout>
     )
@@ -53,7 +58,19 @@ class Template extends React.Component {
 Template.propTypes = {
   children: PropTypes.func,
   location: PropTypes.object,
-  route: PropTypes.object
+  route: PropTypes.object,
+  data: PropTypes.object
 }
 
 export default Template
+
+export const query = graphql`
+query TemplateData {
+  pageAuthor: authorsJson(name: { eq: "Ole Martin Ruud"}) {
+    ...authorInfo
+  }
+  pageAuthorAvatar: file(sourceInstanceName: { eq: "images"}, name: { eq: "olemartinruud"}) {
+    ...authorAvatar
+  }
+}
+`

@@ -1,9 +1,23 @@
 module.exports = {
   siteMetadata: {
-    title: 'Barskern',
-    author: 'Ole Martin Ruud'
+    title: 'Barskern'
   },
   plugins: [
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/data`,
+        name: 'data'
+      }
+    },
+    `gatsby-transformer-json`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/images`,
+        name: 'images'
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
