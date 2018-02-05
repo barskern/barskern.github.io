@@ -19,7 +19,7 @@ const AuthorAvatar = ({authorName, avatarURL, onClick}) =>
   </Tooltip>
 
 AuthorAvatar.propTypes = {
-  authorName: PropTypes.object.isRequired,
+  authorName: PropTypes.string.isRequired,
   avatarURL: PropTypes.string.isRequired,
   onClick: PropTypes.func
 }
