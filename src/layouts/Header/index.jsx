@@ -11,8 +11,7 @@ const { Header } = Layout
 const style = {
   display: 'flex',
   justifyContent: 'space-between',
-  alignItems: 'center',
-  zIndex: 6
+  alignItems: 'center'
 }
 
 const CustomHeader = ({ siderCollapsed, toggleSider }) =>

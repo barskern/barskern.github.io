@@ -30,25 +30,28 @@ class Template extends React.Component {
   render () {
     const { children, data } = this.props
     const { siderCollapsed } = this.state
-    const { pageAuthor, pageAuthorAvatar } = data
+    const { pageAuthorAvatarData } = data
+    const { pageAuthor } = data.site.siteMetadata
 
     return (
       <Layout style={{
         width: '100vw',
         height: '100vh'
       }}>
-        <CustomSider
+        <CustomHeader
           siderCollapsed={siderCollapsed}
-        />
+          toggleSider={this.toggleSider.bind(this)} />
         <Layout style={{ width: '100vw' }}>
-          <CustomHeader
+          <Layout>
+            <Content>{children()}</Content>
+            <Divider />
+            <CustomFooter
+              authorInfo={pageAuthor}
+              authorAvatarData={pageAuthorAvatarData} />
+          </Layout>
+          <CustomSider
             siderCollapsed={siderCollapsed}
-            toggleSider={this.toggleSider.bind(this)} />
-          <Content>{children()}</Content>
-          <Divider />
-          <CustomFooter
-            authorInfo={pageAuthor}
-            authorAvatar={pageAuthorAvatar} />
+          />
         </Layout>
       </Layout>
     )
@@ -66,11 +69,15 @@ export default Template
 
 export const query = graphql`
 query TemplateData {
-  pageAuthor: authorsJson(name: { eq: "Ole Martin Ruud"}) {
-    ...authorInfo
+  site {
+    siteMetadata {
+      pageAuthor: author {
+        ...authorInfo
+      }
+    }
   }
-  pageAuthorAvatar: file(sourceInstanceName: { eq: "images"}, name: { eq: "olemartinruud"}) {
-    ...authorAvatar
+  pageAuthorAvatarData: file(sourceInstanceName: { eq: "images"}, name: { eq: "olemartinruud"}) {
+    ...authorAvatarData
   }
 }
 `

@@ -6,8 +6,7 @@ const { Sider } = Layout
 
 const style = {
   position: 'absolute',
-  height: '100vh',
-  zIndex: 5
+  height: '100%'
 }
 
 const CustomSider = ({ siderCollapsed }) =>

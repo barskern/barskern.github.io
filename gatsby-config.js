@@ -1,23 +1,16 @@
 module.exports = {
   siteMetadata: {
-    title: 'Barskern'
+    title: 'Barskern',
+    author: {
+      name: 'Ole Martin Ruud',
+      description: 'Working towards becoming a software engineer. Has a 🔥 passion for 💻💻.',
+      email: 'barskern@outlook.com',
+      urls: {
+        'github': 'https://github.com/barskern'
+      }
+    }
   },
   plugins: [
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src/data`,
-        name: 'data'
-      }
-    },
-    `gatsby-transformer-json`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src/images`,
-        name: 'images'
-      }
-    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -63,6 +56,13 @@ module.exports = {
             replacer: '$1'
           }
         ]
+      }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/images`,
+        name: 'images'
       }
     },
     `gatsby-transformer-sharp`,

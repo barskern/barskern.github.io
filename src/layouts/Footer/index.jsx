@@ -8,8 +8,8 @@ import AuthorAvatar from '../../components/AuthorAvatar'
 const { Footer } = Layout
 
 const CustomFooter = (props) => {
-  const { authorInfo, authorAvatar } = props
-  const avatarURL = authorAvatar.avatar.newSize.src
+  const { authorInfo, authorAvatarData } = props
+  const avatarURL = authorAvatarData.avatar.newSize.src
 
   return (
     <Footer style={{
@@ -31,20 +31,20 @@ const CustomFooter = (props) => {
 }
 CustomFooter.propTypes = {
   authorInfo: PropTypes.object.isRequired,
-  authorAvatar: PropTypes.object.isRequired
+  authorAvatarData: PropTypes.object.isRequired
 }
 
 export default CustomFooter
 
 export const query = graphql`
-fragment authorAvatar on File {
+fragment authorAvatarData on File {
   avatar: childImageSharp {
     newSize: resize (width: 64, height: 64){
       src
     }
   }
 }
-fragment authorInfo on AuthorsJson {
+fragment authorInfo on author_2 {
   name
   description
   email
