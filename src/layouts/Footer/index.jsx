@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Layout, Row, Col, Divider } from 'antd'
 import { graphql } from 'graphql'
 
-import AuthorAvatar from '../../components/AuthorAvatar'
+import AuthorDisplay from '../../components/AuthorDisplay'
 
 const { Footer } = Layout
 
@@ -17,7 +17,7 @@ const CustomFooter = (props) => {
     }}>
       <Row>
         <Col span={4}>
-          <AuthorAvatar authorInfo={authorInfo} avatarURL={avatarURL} />
+          <AuthorDisplay authorInfo={authorInfo} avatarURL={avatarURL} />
         </Col>
         <Col span={2}>
           <Divider style={{ height: '65px', background: 'rgba(0,0,0,0.3)' }} type='vertical' />

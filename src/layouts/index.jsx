@@ -14,6 +14,11 @@ import './style.less'
 
 const { Content } = Layout
 
+const style = {
+  width: '100vw',
+  height: '100vh'
+}
+
 class Template extends React.Component {
   constructor (props) {
     super(props)
@@ -34,24 +39,19 @@ class Template extends React.Component {
     const { pageAuthor } = data.site.siteMetadata
 
     return (
-      <Layout style={{
-        width: '100vw',
-        height: '100vh'
-      }}>
+      <Layout style={style}>
         <CustomHeader
           siderCollapsed={siderCollapsed}
           toggleSider={this.toggleSider.bind(this)} />
-        <Layout style={{ width: '100vw' }}>
+        <Layout>
           <Layout>
             <Content>{children()}</Content>
-            <Divider />
             <CustomFooter
               authorInfo={pageAuthor}
               authorAvatarData={pageAuthorAvatarData} />
           </Layout>
           <CustomSider
-            siderCollapsed={siderCollapsed}
-          />
+            siderCollapsed={siderCollapsed} />
         </Layout>
       </Layout>
     )
