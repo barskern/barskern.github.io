@@ -6,7 +6,8 @@ const style = {
   fontFamily: '"Beyno", "monospace"',
   fontSize: '36px',
   cursor: 'pointer',
-  paddingTop: '9px'
+  paddingTop: '9px',
+  userSelect: 'none'
 }
 
 const Logo = (props) =>
