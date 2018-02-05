@@ -10,7 +10,7 @@ const style = {
 const styleIcon = {
   color: 'rgba(20,20,20,1)',
   fontSize: '16px',
-  margin: '0 4px'
+  margin: '4px 4px'
 }
 
 const SocialLinks = ({ urls, email }) =>

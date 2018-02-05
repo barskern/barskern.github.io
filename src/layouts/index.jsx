@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Layout, Divider } from 'antd'
+import { Layout } from 'antd'
 import graphql from 'graphql'
 
 import CustomHeader from './Header'

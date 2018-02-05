@@ -7,9 +7,10 @@ import { Avatar, Tooltip } from 'antd'
 import { authorInitialsFromName } from '../../utils/author'
 import { hexColorFromText } from '../../utils/general'
 
-const AuthorAvatar = ({authorName, avatarURL}) =>
+const AuthorAvatar = ({authorName, avatarURL, onClick}) =>
   <Tooltip title={authorName} placement="topRight">
     <Avatar
+      onClick={onClick}
       size='large'
       style={{ backgroundColor: hexColorFromText(authorName) }}
       src={withPrefix(avatarURL)}>
@@ -19,7 +20,8 @@ const AuthorAvatar = ({authorName, avatarURL}) =>
 
 AuthorAvatar.propTypes = {
   authorName: PropTypes.object.isRequired,
-  avatarURL: PropTypes.string.isRequired
+  avatarURL: PropTypes.string.isRequired,
+  onClick: PropTypes.func
 }
 
 export default AuthorAvatar
