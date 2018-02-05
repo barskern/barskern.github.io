@@ -34,26 +34,26 @@ BlogIndex.propTypes = {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query IndexQuery {
-    site {
-      siteMetadata {
-        title
-      }
+query IndexQuery {
+  site {
+    siteMetadata {
+      title
     }
-    posts: allMarkdownRemark {
-      edges {
-        node {
-          excerpt
-          fields {
-            path
-            date
-          }
-          frontmatter {
-            title
-            tags
-          }
+  }
+  posts: allMarkdownRemark(limit: 3, sort: { fields: [fields___date], order: DESC }) {
+    edges {
+      node {
+        excerpt
+        fields {
+          path
+          date
+        }
+        frontmatter {
+          title
+          tags
         }
       }
     }
   }
+}
 `
