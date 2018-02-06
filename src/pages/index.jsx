@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { graphql } from 'graphql'
 
-import PostPreview from './../components/PostPreview'
+import Landing from '../components/Landing'
+import PostPreview from '../components/PostPreview'
 
 class BlogIndex extends React.Component {
   render () {
@@ -15,6 +16,7 @@ class BlogIndex extends React.Component {
     return (
       <div>
         <Helmet title={siteTitle} />
+        <Landing amountOfStars={10} />
         {markdownNodes.map(({ node }) =>
           <PostPreview
             key={ node.fields.path }
