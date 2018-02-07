@@ -16,7 +16,7 @@ class BlogIndex extends React.Component {
     return (
       <div>
         <Helmet title={siteTitle} />
-        <Landing amountOfStars={10} />
+        <Landing amountOfPoints={70} />
         {markdownNodes.map(({ node }) =>
           <PostPreview
             key={ node.fields.path }
