@@ -13,7 +13,8 @@ const style = {
   ...styleSize,
   backgroundColor: '#111',
   background: `url(${BackgroundSRC})`,
-  backgroundSize: 'cover'
+  backgroundSize: 'cover',
+  backgroundPosition: 'center'
 }
 
 const POINT_DEPTH_BIGGEST = 30
@@ -68,20 +69,20 @@ class Landing extends React.Component {
   }
 
   componentWillUnmount () {
-    window.removeEventListener('resize')
+    window.removeEventListener('resize', this.updateCanvasSize)
     window.cancelAnimationFrame(this.animationID)
   }
 
   startCanvas () {
     this.ctx = this.canvas.getContext('2d')
 
-    const updateCanvasSize = () => {
+    this.updateCanvasSize = () => {
       this.canvas.width = this.canvas.offsetWidth
       this.canvas.height = this.canvas.offsetHeight
     }
 
-    updateCanvasSize()
-    window.addEventListener('resize', updateCanvasSize)
+    this.updateCanvasSize()
+    window.addEventListener('resize', this.updateCanvasSize)
 
     this.setState(
       (prevState, props) => ({
