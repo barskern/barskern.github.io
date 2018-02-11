@@ -10,7 +10,7 @@ const BlogPost = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
 
   const { post } = data
-  const { title, author } = post.frontmatter
+  const { title } = post.frontmatter
   const { date } = post.fields
   const tabTitle = title || siteTitle
 
@@ -20,7 +20,7 @@ const BlogPost = ({ data }) => {
       <Container text style={{ paddingTop: '20px' }}>
         <Header as='h1'>
           {title}
-          <Header.Subheader>{moment(date).format('LL')} written by {author}</Header.Subheader>
+          <Header.Subheader>{moment(date).format('LL')}</Header.Subheader>
         </Header>
         <p text dangerouslySetInnerHTML={{ __html: post.html }} />
       </Container>
@@ -48,7 +48,6 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
-        author
       }
     }
   }

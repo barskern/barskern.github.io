@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import graphql from 'graphql'
 
-import CustomFooter from './Footer'
+import Footer from './Footer'
 
 import 'typeface-roboto'
-import '../css/prism-okaidia.css'
+import '../css/prism-solarized.css'
 
 import './style.css'
 import 'semantic-ui-css/semantic.min.css'
@@ -27,7 +27,7 @@ class Template extends React.Component {
     return (
       <div style={style}>
         <div>{children()}</div>
-        <CustomFooter
+        <Footer
           authorInfo={pageAuthor}
           authorAvatarData={pageAuthorAvatarData} />
       </div>

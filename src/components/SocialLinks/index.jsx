@@ -5,7 +5,8 @@ import { Icon } from 'semantic-ui-react'
 const style = {
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center'
+  alignItems: 'center',
+  padding: '6px 0'
 }
 
 const redirect = (url) => {

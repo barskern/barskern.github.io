@@ -42,7 +42,7 @@ query IndexQuery {
       title
     }
   }
-  posts: allMarkdownRemark(limit: 3, sort: { fields: [fields___date], order: DESC }) {
+  posts: allMarkdownRemark(limit: 5, sort: { fields: [fields___date], order: DESC }) {
     edges {
       node {
         excerpt
