@@ -1,14 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Layout } from 'antd'
 import { graphql } from 'graphql'
 
 import AuthorDisplay from '../../components/AuthorDisplay'
 
-const { Footer } = Layout
-
 const style = {
-  background: 'linear-gradient(to top, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 100%)'
+  background: 'linear-gradient(to top, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 100%)',
+  padding: '40px 25px'
 }
 
 const CustomFooter = (props) => {
@@ -16,9 +14,9 @@ const CustomFooter = (props) => {
   const avatarURL = authorAvatarData.avatar.newSize.src
 
   return (
-    <Footer style={style}>
+    <div style={style}>
       <AuthorDisplay {...authorInfo} avatarURL={avatarURL} />
-    </Footer>
+    </div>
   )
 }
 CustomFooter.propTypes = {

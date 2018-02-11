@@ -2,25 +2,24 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { graphql } from 'graphql'
-import Link from 'gatsby-link'
+
+import { Header } from 'semantic-ui-react'
 
 const BlogPost = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
 
   const { post } = data
   const { title, author } = post.frontmatter
-  const { path, date } = post.fields
+  const { date } = post.fields
   const tabTitle = title || siteTitle
 
   return (
     <div>
       <Helmet title={tabTitle} />
-      <Link to={path}>
-        <h1>{title}</h1>
-      </Link>
-      <small>
-        {date} written by {author}
-      </small>
+      <Header as='h1'>
+        {title}
+        <Header.Subheader>{date} written by {author}</Header.Subheader>
+      </Header>
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
     </div>
   )
@@ -42,7 +41,6 @@ export const pageQuery = graphql`
     post: markdownRemark(id: { eq: $id }) {
       html
       fields {
-        path
         date
       }
       frontmatter {

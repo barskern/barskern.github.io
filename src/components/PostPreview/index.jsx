@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { navigateTo } from 'gatsby-link'
 import moment from 'moment'
 
-import { Card, Tag } from 'antd'
+import { Divider, Card, Label } from 'semantic-ui-react'
 
 const formatPreviewDate = (dateString) => {
   const date = moment(dateString)
@@ -13,19 +13,26 @@ const formatPreviewDate = (dateString) => {
 
 const style = {
   width: '95%',
-  margin: '10px auto'
+  margin: '10px auto',
+  maxWidth: '400px'
 }
 
 const PostPreview = ({ title, date, path, excerpt, tags }) =>
   <Card
-    title={title}
-    hoverable
-    onClick={() => navigateTo(path)}
-    extra={formatPreviewDate(date)}
+    link
     style={style}
-    actions={[tags.map(tagName => <Tag key={tagName}>{tagName}</Tag>)]}>
-    <Card.Meta
-      description={excerpt}/>
+    onClick={() => navigateTo(path)}>
+    <Card.Content>
+      <Card.Header>{title}</Card.Header>
+      <Card.Meta>{formatPreviewDate(date)}</Card.Meta>
+      <Card.Description>
+        {excerpt}
+        <Divider />
+        {tags.map(tag =>
+          <Label key={tag}>{tag}</Label>
+        )}
+      </Card.Description>
+    </Card.Content>
   </Card>
 
 export default PostPreview

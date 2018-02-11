@@ -1,18 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Layout } from 'antd'
 import graphql from 'graphql'
 
-import CustomHeader from './Header'
 import CustomFooter from './Footer'
-import CustomSider from './Asider'
 
 import 'typeface-roboto'
 import '../css/prism-okaidia.css'
 
-import './style.less'
-
-const { Content } = Layout
+import './style.css'
+import 'semantic-ui-css/semantic.min.css'
 
 const style = {
   width: '100vw',
@@ -20,40 +16,18 @@ const style = {
 }
 
 class Template extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      siderCollapsed: true
-    }
-  }
-  toggleSider () {
-    this.setState((prevState, props) => {
-      return { siderCollapsed: !prevState.siderCollapsed }
-    })
-  }
-
   render () {
     const { children, data } = this.props
-    const { siderCollapsed } = this.state
     const { pageAuthorAvatarData } = data
     const { pageAuthor } = data.site.siteMetadata
 
     return (
-      <Layout style={style}>
-        <CustomHeader
-          siderCollapsed={siderCollapsed}
-          toggleSider={this.toggleSider.bind(this)} />
-        <Layout>
-          <Layout>
-            <Content>{children()}</Content>
-            <CustomFooter
-              authorInfo={pageAuthor}
-              authorAvatarData={pageAuthorAvatarData} />
-          </Layout>
-          <CustomSider
-            siderCollapsed={siderCollapsed} />
-        </Layout>
-      </Layout>
+      <div style={style}>
+        <div>{children()}</div>
+        <CustomFooter
+          authorInfo={pageAuthor}
+          authorAvatarData={pageAuthorAvatarData} />
+      </div>
     )
   }
 }

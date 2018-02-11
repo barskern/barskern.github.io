@@ -68,18 +68,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-offline`,
-    `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-plugin-antd`,
-      options: {
-        style: true
-      }
-    },
-    {
-      resolve: `gatsby-plugin-less`,
-      options: {
-        theme: './src/theme.js'
-      }
-    }
+    `gatsby-plugin-react-helmet`
   ]
 }

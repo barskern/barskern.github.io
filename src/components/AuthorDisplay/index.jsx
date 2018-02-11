@@ -1,37 +1,38 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { navigateTo } from 'gatsby-link'
-import { Divider } from 'antd'
 
 import SocialLinks from '../SocialLinks'
 import AuthorAvatar from '../AuthorAvatar'
+import { Header, Divider } from 'semantic-ui-react'
 
 const style = {
   display: 'flex',
   alignItems: 'center',
-  width: '340px'
+  maxWidth: '340px',
+  width: '100%'
 }
 
-const styleDivider = {
-  margin: '0 12px',
-  height: '30px',
-  background: 'rgba(0,0,0,0.3)'
+const styleAvatarAndLinks = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center'
 }
 
 const AuthorDisplay = ({name, description, urls, email, avatarURL}) =>
   <div style={style}>
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div style={styleAvatarAndLinks}>
       <AuthorAvatar
         authorName={name}
-        avatarURL={avatarURL}
-        onClick={() => navigateTo('/')} />
+        avatarURL={avatarURL} />
       <SocialLinks urls={urls} email={email} />
     </div>
-    <Divider style={styleDivider} type='vertical' />
+    <Divider vertical />
     <div>
-      <h3>{name}</h3>
-      <div>{description}</div>
+      <Header as='h3'>
+        {name}
+        <Header.Subheader>{description}</Header.Subheader>
+      </Header>
     </div>
   </div>
 

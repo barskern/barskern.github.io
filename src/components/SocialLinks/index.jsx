@@ -1,26 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from 'antd'
+import { Icon } from 'semantic-ui-react'
 
 const style = {
   display: 'flex',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  alignItems: 'center'
 }
 
-const styleIcon = {
-  color: 'rgba(20,20,20,1)',
-  fontSize: '16px',
-  margin: '4px 4px'
+const redirect = (url) => {
+  window.location.href = url
 }
 
 const SocialLinks = ({ urls, email }) =>
   <div style={style}>
-    <a href={urls.github}>
-      <Icon type='github' style={styleIcon}/>
-    </a>
-    <a href={`mailto:${email}`}>
-      <Icon type='mail' style={styleIcon}/>
-    </a>
+    <Icon link size='large' name='github' onClick={() => redirect(urls.github)} />
+    <Icon link size='large' name='outline mail' onClick={() => redirect(`mailto:${email}`)}/>
   </div>
 
 SocialLinks.propTypes = {
