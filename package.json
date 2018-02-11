@@ -21,6 +21,7 @@
     "gatsby-transformer-remark": "^1.7.1",
     "gatsby-transformer-sharp": "^1.6.1",
     "moment": "^2.20.1",
+    "prismjs": "^1.11.0",
     "prop-types": "^15.6.0",
     "semantic-ui-css": "^2.2.14",
     "semantic-ui-react": "^0.78.2",

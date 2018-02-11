@@ -16,7 +16,10 @@ class BlogIndex extends React.Component {
     return (
       <div>
         <Helmet title={siteTitle} />
-        <Landing amountOfPoints={70} />
+        <Landing
+          charInterval={60}
+          text="const a = 1\nconst b = 10\nconst c = a + b\n\nfunction a (hello) {\n  console.log(hello)\n}\n\na('ole')\n\nconst reg = /\w+/" />
+
         {markdownNodes.map(({ node }) =>
           <PostPreview
             key={ node.fields.path }
