@@ -7,6 +7,7 @@ import { Image } from 'semantic-ui-react'
 const AuthorAvatar = ({authorName, avatarURL}) =>
   <Image
     circular
+    centered
     size='tiny'
     src={withPrefix(avatarURL)} />
 

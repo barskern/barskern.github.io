@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { graphql } from 'graphql'
+import moment from 'moment'
 
-import { Header } from 'semantic-ui-react'
+import { Header, Container } from 'semantic-ui-react'
 
 const BlogPost = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -16,11 +17,13 @@ const BlogPost = ({ data }) => {
   return (
     <div>
       <Helmet title={tabTitle} />
-      <Header as='h1'>
-        {title}
-        <Header.Subheader>{date} written by {author}</Header.Subheader>
-      </Header>
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <Container text style={{ paddingTop: '20px' }}>
+        <Header as='h1'>
+          {title}
+          <Header.Subheader>{moment(date).format('LL')} written by {author}</Header.Subheader>
+        </Header>
+        <p text dangerouslySetInnerHTML={{ __html: post.html }} />
+      </Container>
     </div>
   )
 }

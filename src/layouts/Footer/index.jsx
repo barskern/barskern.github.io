@@ -9,7 +9,7 @@ const style = {
   padding: '40px 25px'
 }
 
-const CustomFooter = (props) => {
+const Footer = (props) => {
   const { authorInfo, authorAvatarData } = props
   const avatarURL = authorAvatarData.avatar.newSize.src
 
@@ -19,12 +19,12 @@ const CustomFooter = (props) => {
     </div>
   )
 }
-CustomFooter.propTypes = {
+Footer.propTypes = {
   authorInfo: PropTypes.object.isRequired,
   authorAvatarData: PropTypes.object.isRequired
 }
 
-export default CustomFooter
+export default Footer
 
 export const query = graphql`
 fragment authorAvatarData on File {

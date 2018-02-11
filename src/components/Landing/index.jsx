@@ -5,6 +5,7 @@ import SnowflakeSRC from './snowflake.svg'
 import BackgroundSRC from './dark_winter_sky.jpg'
 
 const styleSize = {
+  position: 'relative',
   width: '100%',
   height: '50vh'
 }
@@ -13,8 +14,10 @@ const style = {
   ...styleSize,
   backgroundColor: '#111',
   background: `url(${BackgroundSRC})`,
-  backgroundSize: 'cover',
-  backgroundPosition: 'center'
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'center top',
+  backgroundAttachment: 'fixed',
+  backgroundSize: 'auto 70%'
 }
 
 const POINT_DEPTH_BIGGEST = 30
