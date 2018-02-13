@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 import Prism from 'prismjs'
 
+import AuthorLandingFade from '../AuthorLandingFade'
+
 const colors = {
   base03: '#002b36',
   base02: '#073642',
@@ -29,7 +31,12 @@ const styleSize = {
 
 const style = {
   ...styleSize,
+  position: 'relative',
   backgroundColor: colors['base2']
+}
+
+const styleCanvas = {
+  ...styleSize
 }
 
 const highlightingColors = {
@@ -39,15 +46,34 @@ const highlightingColors = {
   'function': colors['cyan'],
   'operator': colors['base01'],
   'regex': colors['orange'],
-  'function-variable': colors['blue'],
-  'template-string': colors['yellow']
+  'function-variable': colors['cyan'],
+  'template-string': colors['yellow'],
+  'punctuation': colors['base1'],
+  'tag': colors['red'],
+  'attr-name': colors['yellow'],
+  'attr-value': colors['green'],
+  'script': colors['default']
+}
+
+const drawToken = (ctx, parentType = 'default') => token => {
+  if (Array.isArray(token.content)) {
+    token.content.forEach(token => drawToken(ctx, token.type || parentType)(token))
+    return
+  }
+  const text = token.content || token
+  const type = token.type || parentType
+
+  ctx.fillStyle = highlightingColors[type || 'default'] || highlightingColors['default']
+  ctx.fillText(text, 0, 0)
+  ctx.translate(ctx.measureText(text).width, 0)
 }
 
 class Landing extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      textIndex: 0
+      textIndex: 0,
+      showAuthor: false
     }
   }
 
@@ -55,8 +81,13 @@ class Landing extends React.Component {
     this.intervalID = setInterval(
       this.setState.bind(this, (prevState, props) => {
         if (props.text.length < prevState.textIndex) {
+          const { blurAmount } = this.props
+          this.canvas.style.filter = `blur(${blurAmount}px)`
           clearInterval(this.intervalID)
-          return prevState
+          return {
+            ...prevState,
+            showAuthor: true
+          }
         } else {
           return {
             textIndex: prevState.textIndex + 1
@@ -71,7 +102,6 @@ class Landing extends React.Component {
     const { fontSize, highlightingLanguage, textStartPos, text } = this.props
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
-    ctx.fillStyle = '#fff'
     ctx.font = `${fontSize}px "Source Code Pro", monospace`
 
     ctx.save()
@@ -85,13 +115,7 @@ class Landing extends React.Component {
       .forEach((lineTokens, lineNumber) => {
         ctx.save()
         ctx.translate(0, fontSize * lineNumber)
-        lineTokens.forEach(token => {
-          const text = token.content || token
-          const type = token.type || 'default'
-          ctx.fillStyle = highlightingColors[type] || highlightingColors['default']
-          ctx.fillText(text, 0, 0)
-          ctx.translate(ctx.measureText(text).width, 0)
-        })
+        lineTokens.forEach(drawToken(ctx))
         ctx.restore()
       })
     ctx.restore()
@@ -112,39 +136,59 @@ class Landing extends React.Component {
     this.updateCanvas()
   }
 
+  componentWillReceiveProps (nextProps) {
+    // Start from scratch ONLY if the new text doesn't contain current text
+    if (!nextProps.text.includes(this.props.text)) {
+      this.setState(prevState => ({
+        ...prevState,
+        textIndex: 0
+      }))
+    }
+    this.setState(prevState => ({
+      ...prevState,
+      showAuthor: false
+    }))
+    this.canvas.style.filter = 'none'
+    this.startTextInterval()
+  }
+
   componentWillUnmount () {
     clearInterval(this.intervalID)
     window.removeEventListener('resize', this.updateCanvasSize.bind(this))
   }
 
-  componentWillReceiveProps (nextProps) {
-    // Start from scratch ONLY if the new text doesn't contain current text
-    if (!nextProps.text.includes(this.props.text)) {
-      this.setState({
-        textIndex: 0
-      })
-    }
-    this.startTextInterval()
-  }
-
   render () {
+    const { authorAvatarURL, authorName, blurDuration, authorInfoDuration } = this.props
+    const { showAuthor } = this.state
     return (
       <div style={style}>
-        <canvas ref={(c) => { this.canvas = c }} style={styleSize} />
+        <div style={{
+          ...styleCanvas,
+          transition: `filter ${blurDuration}ms ease-in-out`
+        }}>
+          <canvas ref={(c) => { this.canvas = c }} style={styleCanvas} />
+        </div>
+        <AuthorLandingFade
+          show={showAuthor}
+          duration={authorInfoDuration}
+          authorAvatarURL={authorAvatarURL}
+          authorName={authorName} />
       </div>
     )
   }
 }
 
 Landing.defaultProps = {
-  text: 'Please define a text',
   fontSize: 20,
-  charInterval: 100,
+  charInterval: 40,
   textStartPos: {
     x: 20,
     y: 30
   },
-  highlightingLanguage: 'javascript'
+  highlightingLanguage: 'javascript',
+  blurAmount: 1,
+  blurDuration: 1000,
+  authorInfoDuration: 200
 }
 
 Landing.propTypes = {
@@ -152,7 +196,12 @@ Landing.propTypes = {
   fontSize: PropTypes.number,
   charInterval: PropTypes.number,
   textStartPos: PropTypes.object,
-  highlightingLanguage: PropTypes.string
+  highlightingLanguage: PropTypes.string,
+  blurAmount: PropTypes.number,
+  blurDuration: PropTypes.number,
+  authorAvatarURL: PropTypes.string.isRequired,
+  authorName: PropTypes.string.isRequired,
+  authorInfoDuration: PropTypes.number
 }
 
 export default Landing

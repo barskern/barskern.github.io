@@ -22,7 +22,7 @@ const BlogPost = ({ data }) => {
           {title}
           <Header.Subheader>{moment(date).format('LL')}</Header.Subheader>
         </Header>
-        <p text dangerouslySetInnerHTML={{ __html: post.html }} />
+        <p dangerouslySetInnerHTML={{ __html: post.html }} />
       </Container>
     </div>
   )

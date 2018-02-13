@@ -5,20 +5,40 @@ import { graphql } from 'graphql'
 
 import Landing from '../components/Landing'
 import PostPreview from '../components/PostPreview'
+import 'prismjs/components/prism-jsx.min'
+
+const landingText = [
+  'import ReactDOM from \'react-dom\'',
+  'import AvatarURL from \'../images/awesome_avatar.png\'',
+  '',
+  'const Avatar = ({ authorName }) =>',
+  '  <div id=\'author-avatar\'>',
+  '    <img src={AvatarURL} />',
+  '    <h2>{authorName}</h2>',
+  '  </div>',
+  '',
+  'ReactDOM.render(<Avatar authorName=\'Ole Martin Ruud\' />,',
+  '  document.getElementById(\'landing\'))'
+]
 
 class BlogIndex extends React.Component {
   render () {
     const { data } = this.props
 
     const siteTitle = data.site.siteMetadata.title
+    const authorName = data.site.siteMetadata.author.name
+    const authorAvatarURL = data.pageAuthorAvatarData.avatar.newSize.src
     const markdownNodes = data.posts.edges
 
     return (
       <div>
         <Helmet title={siteTitle} />
         <Landing
-          charInterval={60}
-          text="const a = 1\nconst b = 10\nconst c = a + b\n\nfunction a (hello) {\n  console.log(hello)\n}\n\na('ole')\n\nconst reg = /\w+/" />
+          charInterval={20}
+          text={landingText.join('\\n')}
+          highlightingLanguage='jsx'
+          authorName={authorName}
+          authorAvatarURL={authorAvatarURL} />
 
         {markdownNodes.map(({ node }) =>
           <PostPreview
@@ -43,6 +63,16 @@ query IndexQuery {
   site {
     siteMetadata {
       title
+      author {
+        name
+      }
+    }
+  }
+  pageAuthorAvatarData: file(sourceInstanceName: { eq: "images"}, name: { eq: "olemartinruud"}) {
+    avatar: childImageSharp {
+      newSize: resize (width: 128, height: 128){
+        src
+      }
     }
   }
   posts: allMarkdownRemark(limit: 5, sort: { fields: [fields___date], order: DESC }) {
