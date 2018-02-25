@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import CanvasIncrementalText from '../CanvasIncrementalText'
 import AuthorAvatar from '../AuthorAvatar'
 import FadeInOut from '../../hoc-components/FadeInOut'
+import OverlayBlur from '../../hoc-components/OverlayBlur'
 import { Header } from 'semantic-ui-react'
 
 const size = {
@@ -56,20 +57,22 @@ class ProgrammingLanding extends React.Component {
     const { showAuthor } = this.state
     return (
       <div style={style}>
-        <CanvasIncrementalText
-          charInterval={10}
-          text={landingText.join('\n')}
-          highlightingLanguage='jsx'
-          centerText
-          onRestart={() => this.setState({ showAuthor: false })}
-          onComplete={() => this.setState({ showAuthor: true })} />
+        <OverlayBlur show={showAuthor}>
+          <CanvasIncrementalText
+            charInterval={10}
+            text={landingText.join('\n')}
+            highlightingLanguage='jsx'
+            centerText
+            onRestart={() => this.setState({ showAuthor: false })}
+            onComplete={() => this.setState({ showAuthor: true })} />
+        </OverlayBlur>
 
         <FadeInOut show={showAuthor}>
           <div style={styleAuthorInfo}>
             <AuthorAvatar
               avatarURL={authorAvatarURL}
               authorName={authorName} />
-            <Header>{authorName}</Header>
+            <Header as='h1'>{authorName}</Header>
           </div>
         </FadeInOut>
       </div>
