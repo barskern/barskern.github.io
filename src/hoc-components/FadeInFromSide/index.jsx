@@ -7,7 +7,7 @@ const FadeInFromSide = ({ show, duration, easing, children, fadeFrom, offset, fi
   const style = {
     ...(fillParent
       ? { width: '100%', height: '100%', ...(fadeFrom === 'left' ? {left: 0, top: 0} : {right: 0, bottom: 0}), position: 'absolute' }
-      : {}),
+      : { position: 'relative' }),
     transition: `${fadeFrom} ${duration}ms ${easing}, opacity ${duration / 2}ms ${easing}`
   }
   const styleTransition = {
