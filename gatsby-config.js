@@ -3,6 +3,7 @@ module.exports = {
     title: 'Barskern',
     author: {
       name: 'Ole Martin Ruud',
+      nickname: 'barskern',
       description: 'Working towards becoming a software engineer. Has a 🔥 passion for 💻💻.',
       email: 'barskern@outlook.com',
       urls: {
