@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Landing from '../Landing'
+import CanvasIncrementalText from '../CanvasIncrementalText'
 
 const landingText = [
   'import ReactDOM from \'react-dom\'',
@@ -18,7 +18,7 @@ const landingText = [
 ]
 
 const ProgrammingLanding = ({ authorName, authorAvatarURL }) =>
-  <Landing
+  <CanvasIncrementalText
     charInterval={20}
     text={landingText.join('\\n')}
     highlightingLanguage='jsx'

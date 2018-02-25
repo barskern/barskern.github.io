@@ -68,7 +68,7 @@ const drawToken = (ctx, parentType = 'default') => token => {
   ctx.translate(ctx.measureText(text).width, 0)
 }
 
-class Landing extends React.Component {
+class CanvasIncrementalText extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -178,7 +178,7 @@ class Landing extends React.Component {
   }
 }
 
-Landing.defaultProps = {
+CanvasIncrementalText.defaultProps = {
   fontSize: 20,
   charInterval: 40,
   textStartPos: {
@@ -191,7 +191,7 @@ Landing.defaultProps = {
   authorInfoDuration: 200
 }
 
-Landing.propTypes = {
+CanvasIncrementalText.propTypes = {
   text: PropTypes.string.isRequired,
   fontSize: PropTypes.number,
   charInterval: PropTypes.number,
@@ -204,4 +204,4 @@ Landing.propTypes = {
   authorInfoDuration: PropTypes.number
 }
 
-export default Landing
+export default CanvasIncrementalText
