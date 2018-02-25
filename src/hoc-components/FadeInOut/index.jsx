@@ -11,12 +11,10 @@ const styleTransition = {
 }
 
 const FadeInOut = ({ show, duration, easing, children }) =>
-  <Transition in={!!show} timeout={duration}>
+  <Transition in={!!show} timeout={duration} appear>
     {state =>
       <div style={{
         transition: `opacity ${duration}ms ${easing}`,
-        width: '100%',
-        height: '100%',
         ...styleTransition[state]
       }}>
         {children}
