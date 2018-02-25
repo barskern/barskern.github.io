@@ -2,6 +2,32 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import CanvasIncrementalText from '../CanvasIncrementalText'
+import AuthorAvatar from '../AuthorAvatar'
+import FadeInOut from '../../hoc-components/FadeInOut'
+import { Header } from 'semantic-ui-react'
+
+const size = {
+  width: '100%',
+  height: '100vh',
+  maxHeight: '300px'
+}
+
+const style = {
+  ...size,
+  position: 'relative',
+  margin: 0
+}
+
+const styleAuthorInfo = {
+  ...size,
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center'
+}
 
 const landingText = [
   'import ReactDOM from \'react-dom\'',
@@ -17,17 +43,43 @@ const landingText = [
   '  document.getElementById(\'landing\'))'
 ]
 
-const ProgrammingLanding = ({ authorName, authorAvatarURL }) =>
-  <CanvasIncrementalText
-    charInterval={20}
-    text={landingText.join('\\n')}
-    highlightingLanguage='jsx'
-    authorName={authorName}
-    authorAvatarURL={authorAvatarURL} />
+class ProgrammingLanding extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      showAuthor: false
+    }
+  }
+
+  render () {
+    const { authorName, authorAvatarURL } = this.props
+    const { showAuthor } = this.state
+    return (
+      <div style={style}>
+        <CanvasIncrementalText
+          charInterval={10}
+          text={landingText.join('\n')}
+          highlightingLanguage='jsx'
+          centerText
+          onRestart={() => this.setState({ showAuthor: false })}
+          onComplete={() => this.setState({ showAuthor: true })} />
+
+        <FadeInOut show={showAuthor}>
+          <div style={styleAuthorInfo}>
+            <AuthorAvatar
+              avatarURL={authorAvatarURL}
+              authorName={authorName} />
+            <Header>{authorName}</Header>
+          </div>
+        </FadeInOut>
+      </div>
+    )
+  }
+}
 
 ProgrammingLanding.propTypes = {
-  authorName: PropTypes.string,
-  authorAvatarURL: PropTypes.string
+  authorName: PropTypes.string.isRequired,
+  authorAvatarURL: PropTypes.string.isRequired
 }
 
 export default ProgrammingLanding

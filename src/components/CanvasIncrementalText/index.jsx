@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 
 import Prism from 'prismjs'
 
-import AuthorLandingFade from '../AuthorLandingFade'
-
 const colors = {
   base03: '#002b36',
   base02: '#073642',
@@ -22,21 +20,6 @@ const colors = {
   blue: '#268bd2',
   cyan: '#2aa198',
   green: '#859900'
-}
-
-const styleSize = {
-  width: '100%',
-  height: '30vh'
-}
-
-const style = {
-  ...styleSize,
-  position: 'relative',
-  backgroundColor: colors['base2']
-}
-
-const styleCanvas = {
-  ...styleSize
 }
 
 const highlightingColors = {
@@ -73,44 +56,43 @@ class CanvasIncrementalText extends React.Component {
     super(props)
     this.state = {
       textIndex: 0,
-      showAuthor: false
+      textStartPos: props.textStartPos
     }
   }
 
   startTextInterval () {
+    const { charInterval, onComplete } = this.props
     this.intervalID = setInterval(
-      this.setState.bind(this, (prevState, props) => {
-        if (props.text.length < prevState.textIndex) {
-          const { blurAmount } = this.props
-          this.canvas.style.filter = `blur(${blurAmount}px)`
-          clearInterval(this.intervalID)
-          return {
-            ...prevState,
-            showAuthor: true
+      this.setState.bind(this,
+        (prevState, props) => {
+          if (prevState.textIndex > props.text.length) {
+            clearInterval(this.intervalID)
+            if (typeof onComplete === 'function') onComplete()
+            return { ...prevState }
+          } else {
+            return {
+              ...prevState,
+              textIndex: prevState.textIndex + 1
+            }
           }
-        } else {
-          return {
-            textIndex: prevState.textIndex + 1
-          }
-        }
-      })
-      , this.props.charInterval)
+        })
+      , charInterval)
   }
 
   updateCanvas () {
     const ctx = this.canvas.getContext('2d')
-    const { fontSize, highlightingLanguage, textStartPos, text } = this.props
+    const { fontSize, fontFamily, highlightingLanguage, text } = this.props
+    const { textStartPos } = this.state
+
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
-    ctx.font = `${fontSize}px "Source Code Pro", monospace`
-
     ctx.save()
+    ctx.font = `${fontSize}px ${fontFamily}`
     ctx.translate(textStartPos.x, textStartPos.y)
 
     text
       .slice(0, this.state.textIndex)
-      .replace(/\\$/, '')
-      .split('\\n')
+      .split('\n')
       .map(line => Prism.tokenize(line, Prism.languages[highlightingLanguage]))
       .forEach((lineTokens, lineNumber) => {
         ctx.save()
@@ -124,6 +106,26 @@ class CanvasIncrementalText extends React.Component {
   updateCanvasSize () {
     this.canvas.width = this.canvas.offsetWidth
     this.canvas.height = this.canvas.offsetHeight
+
+    if (this.props.centerText) {
+      const ctx = this.canvas.getContext('2d')
+      this.setState((prevState, props) => {
+        const { fontSize, fontFamily } = props
+        ctx.save()
+        ctx.font = `${fontSize}px ${fontFamily}`
+        const textLines = props.text
+          .split('\n')
+        const biggestWidth = textLines
+          .reduce((currentlyBiggest, line) => Math.max(ctx.measureText(line).width, currentlyBiggest), 0)
+        ctx.restore()
+        return {
+          textStartPos: {
+            x: (this.canvas.width / 2) - (biggestWidth / 2),
+            y: (this.canvas.height / 2) - ((fontSize * textLines.length) / 2)
+          }
+        }
+      })
+    }
   }
 
   componentDidMount () {
@@ -137,18 +139,18 @@ class CanvasIncrementalText extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
+    const { onRestart } = nextProps
     // Start from scratch ONLY if the new text doesn't contain current text
     if (!nextProps.text.includes(this.props.text)) {
-      this.setState(prevState => ({
-        ...prevState,
-        textIndex: 0
-      }))
+      this.setState(prevState => {
+        if (typeof onRestart === 'function') onRestart()
+        return {
+          ...prevState,
+          textIndex: 0
+        }
+      })
     }
-    this.setState(prevState => ({
-      ...prevState,
-      showAuthor: false
-    }))
-    this.canvas.style.filter = 'none'
+    this.updateCanvasSize()
     this.startTextInterval()
   }
 
@@ -158,50 +160,34 @@ class CanvasIncrementalText extends React.Component {
   }
 
   render () {
-    const { authorAvatarURL, authorName, blurDuration, authorInfoDuration } = this.props
-    const { showAuthor } = this.state
     return (
-      <div style={style}>
-        <div style={{
-          ...styleCanvas,
-          transition: `filter ${blurDuration}ms ease-in-out`
-        }}>
-          <canvas ref={(c) => { this.canvas = c }} style={styleCanvas} />
-        </div>
-        <AuthorLandingFade
-          show={showAuthor}
-          duration={authorInfoDuration}
-          authorAvatarURL={authorAvatarURL}
-          authorName={authorName} />
-      </div>
+      <canvas ref={(c) => { this.canvas = c }} style={{width: '100%', height: '100%', backgroundColor: colors['base2']}} />
     )
   }
 }
 
 CanvasIncrementalText.defaultProps = {
-  fontSize: 20,
+  fontSize: 16,
+  fontFamily: `"Source Code Pro", monospace`,
   charInterval: 40,
   textStartPos: {
     x: 20,
     y: 30
   },
   highlightingLanguage: 'javascript',
-  blurAmount: 1,
-  blurDuration: 1000,
-  authorInfoDuration: 200
+  centerText: false
 }
 
 CanvasIncrementalText.propTypes = {
   text: PropTypes.string.isRequired,
   fontSize: PropTypes.number,
+  fontFamily: PropTypes.string,
   charInterval: PropTypes.number,
   textStartPos: PropTypes.object,
   highlightingLanguage: PropTypes.string,
-  blurAmount: PropTypes.number,
-  blurDuration: PropTypes.number,
-  authorAvatarURL: PropTypes.string.isRequired,
-  authorName: PropTypes.string.isRequired,
-  authorInfoDuration: PropTypes.number
+  onRestart: PropTypes.func,
+  onComplete: PropTypes.func,
+  centerText: PropTypes.bool
 }
 
 export default CanvasIncrementalText
