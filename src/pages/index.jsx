@@ -5,7 +5,9 @@ import { graphql } from 'graphql'
 
 import ProgrammingLanding from '../components/ProgrammingLanding'
 import PostPreview from '../components/PostPreview'
-import 'prismjs/components/prism-jsx.min'
+import FadeInFromSide from '../hoc-components/FadeInFromSide'
+
+import 'prismjs/components/prism-jsx.min' // Import jsx-language for prism
 
 class Homepage extends React.Component {
   render () {
@@ -23,12 +25,17 @@ class Homepage extends React.Component {
         <ProgrammingLanding
           authorName={authorName}
           authorAvatarURL={authorAvatarURL} />
-        {markdownNodes.map(({ node }) =>
-          <PostPreview
-            key={ node.fields.path }
-            {...node.frontmatter}
-            {...node.fields}
-            excerpt={node.excerpt} />
+        {markdownNodes.map(({ node }, index) =>
+          <FadeInFromSide
+            key={node.fields.path}
+            show={true}
+            fadeFrom={index % 2 === 0 ? 'left' : 'right'}>
+            <PostPreview
+              {...node.frontmatter}
+              {...node.fields}
+              excerpt={node.excerpt} />
+          </FadeInFromSide>
+
         )}
       </div>
     )
