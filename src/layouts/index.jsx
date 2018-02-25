@@ -5,10 +5,10 @@ import graphql from 'graphql'
 import Footer from './Footer'
 
 import 'typeface-roboto'
-import '../css/prism-solarized.css'
 
-import './style.css'
+import '../css/prism-solarized.css'
 import 'semantic-ui-css/semantic.min.css'
+import './style.css'
 
 const style = {
   display: 'flex',

@@ -3,25 +3,11 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { graphql } from 'graphql'
 
-import Landing from '../components/Landing'
+import ProgrammingLanding from '../components/ProgrammingLanding'
 import PostPreview from '../components/PostPreview'
 import 'prismjs/components/prism-jsx.min'
 
-const landingText = [
-  'import ReactDOM from \'react-dom\'',
-  'import AvatarURL from \'../images/awesome_avatar.png\'',
-  '',
-  'const Avatar = ({ authorName }) =>',
-  '  <div id=\'author-avatar\'>',
-  '    <img src={AvatarURL} />',
-  '    <h2>{authorName}</h2>',
-  '  </div>',
-  '',
-  'ReactDOM.render(<Avatar authorName=\'Ole Martin Ruud\' />,',
-  '  document.getElementById(\'landing\'))'
-]
-
-class BlogIndex extends React.Component {
+class Homepage extends React.Component {
   render () {
     const { data } = this.props
 
@@ -33,13 +19,10 @@ class BlogIndex extends React.Component {
     return (
       <div>
         <Helmet title={siteTitle} />
-        <Landing
-          charInterval={20}
-          text={landingText.join('\\n')}
-          highlightingLanguage='jsx'
+
+        <ProgrammingLanding
           authorName={authorName}
           authorAvatarURL={authorAvatarURL} />
-
         {markdownNodes.map(({ node }) =>
           <PostPreview
             key={ node.fields.path }
@@ -52,11 +35,11 @@ class BlogIndex extends React.Component {
   }
 }
 
-BlogIndex.propTypes = {
+Homepage.propTypes = {
   data: PropTypes.object
 }
 
-export default BlogIndex
+export default Homepage
 
 export const pageQuery = graphql`
 query IndexQuery {
