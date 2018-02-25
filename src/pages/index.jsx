@@ -10,8 +10,17 @@ import FadeInFromSide from '../hoc-components/FadeInFromSide'
 import 'prismjs/components/prism-jsx.min' // Import jsx-language for prism
 
 class Homepage extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      showPostPreviews: false
+    }
+
+    setTimeout(this.setState.bind(this, { showPostPreviews: true }), 300) // Add delay to optimize performace
+  }
   render () {
     const { data } = this.props
+    const { showPostPreviews } = this.state
 
     const siteTitle = data.site.siteMetadata.title
     const authorName = data.site.siteMetadata.author.name
@@ -28,7 +37,7 @@ class Homepage extends React.Component {
         {markdownNodes.map(({ node }, index) =>
           <FadeInFromSide
             key={node.fields.path}
-            show={true}
+            show={showPostPreviews}
             fadeFrom={index % 2 === 0 ? 'left' : 'right'}>
             <PostPreview
               {...node.frontmatter}

@@ -59,7 +59,7 @@ class ProgrammingLanding extends React.Component {
       <div style={style}>
         <OverlayBlur show={showAuthor}>
           <CanvasIncrementalText
-            charInterval={10}
+            charInterval={30}
             text={landingText.join('\n')}
             highlightingLanguage='jsx'
             centerText
