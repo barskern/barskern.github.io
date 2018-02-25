@@ -3,7 +3,13 @@ import PropTypes from 'prop-types'
 
 import { Transition } from 'react-transition-group'
 
-const FadeInFromSide = ({ show, duration, easing, children, fadeFrom, offset }) => {
+const FadeInFromSide = ({ show, duration, easing, children, fadeFrom, offset, fillParent }) => {
+  const style = {
+    ...(fillParent
+      ? { width: '100%', height: '100%', ...(fadeFrom === 'left' ? {left: 0, top: 0} : {right: 0, bottom: 0}), position: 'absolute' }
+      : {}),
+    transition: `${fadeFrom} ${duration}ms ${easing}, opacity ${duration / 2}ms ${easing}`
+  }
   const styleTransition = {
     'entering': { 'opacity': 1 },
     'entered': { 'opacity': 1 },
@@ -19,8 +25,7 @@ const FadeInFromSide = ({ show, duration, easing, children, fadeFrom, offset }) 
     <Transition in={!!show} timeout={duration} appear>
       {state =>
         <div style={{
-          position: 'relative',
-          transition: `${fadeFrom} ${duration}ms ${easing}, opacity ${duration / 2}ms ${easing}`,
+          ...style,
           ...styleTransition[state]
         }}>
           {children}
@@ -35,15 +40,17 @@ FadeInFromSide.propTypes = {
   duration: PropTypes.number,
   easing: PropTypes.string,
   children: PropTypes.oneOfType([ PropTypes.arrayOf(PropTypes.element), PropTypes.element ]),
-  fadeFrom: PropTypes.oneOf([ 'left', 'right', 'top', 'bottom' ]),
-  offset: PropTypes.number
+  fadeFrom: PropTypes.oneOf([ 'left', 'right' ]),
+  offset: PropTypes.number,
+  fillParent: PropTypes.bool
 }
 
 FadeInFromSide.defaultProps = {
   duration: 200,
   easing: 'ease-in-out',
   fadeFrom: 'left',
-  offset: 300
+  offset: 300,
+  fillParent: false
 }
 
 export default FadeInFromSide

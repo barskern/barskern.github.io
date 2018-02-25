@@ -71,7 +71,7 @@ query IndexQuery {
   }
   pageAuthorAvatarData: file(sourceInstanceName: { eq: "images"}, name: { eq: "olemartinruud"}) {
     avatar: childImageSharp {
-      newSize: resize (width: 128, height: 128){
+      newSize: resize (width: 256, height: 256){
         src
       }
     }

@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 
 import CanvasIncrementalText from '../CanvasIncrementalText'
 import AuthorAvatar from '../AuthorAvatar'
+import SkewedHoverLink from '../SkewedHoverLink'
 import FadeInOut from '../../hoc-components/FadeInOut'
+import FadeInFromSide from '../../hoc-components/FadeInFromSide'
 import OverlayBlur from '../../hoc-components/OverlayBlur'
 import { Header } from 'semantic-ui-react'
 
@@ -13,6 +15,13 @@ const size = {
   maxHeight: '300px'
 }
 
+const fillParent = {
+  ...size,
+  position: 'absolute',
+  top: 0,
+  left: 0
+}
+
 const style = {
   ...size,
   position: 'relative',
@@ -20,10 +29,7 @@ const style = {
 }
 
 const styleAuthorInfo = {
-  ...size,
-  position: 'absolute',
-  top: 0,
-  left: 0,
+  ...fillParent,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -34,9 +40,10 @@ const landingText = [
   'import ReactDOM from \'react-dom\'',
   'import AvatarURL from \'../images/awesome_avatar.png\'',
   '',
-  'const Avatar = ({ authorName }) =>',
+  'const Avatar = ({ authorName, authorNickname }) =>',
   '  <div id=\'author-avatar\'>',
   '    <img src={AvatarURL} />',
+  '    <h1>{authorNickname}</h1>',
   '    <h2>{authorName}</h2>',
   '  </div>',
   '',
@@ -72,11 +79,14 @@ class ProgrammingLanding extends React.Component {
             <AuthorAvatar
               avatarURL={authorAvatarURL}
               authorName={authorName}
-              size='middle' />
+              size='small' />
             <Header as='h1' style={{ fontFamily: 'Beyno', fontSize: '40px', margin: '10px 0' }}>{authorNickname}</Header>
             <Header as='h1' style={{ fontFamily: 'Beyno', fontSize: '20px', margin: '0 0' }}>{authorName}</Header>
           </div>
         </FadeInOut>
+
+        <SkewedHoverLink show={showAuthor} to='/posts'>Blogposts</SkewedHoverLink>
+        <SkewedHoverLink show={showAuthor} to='/projects' side='right'>Projects</SkewedHoverLink>
       </div>
     )
   }
