@@ -60,6 +60,7 @@ class CanvasIncrementalText extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      intervalID: 0,
       tokenlines: [],
       textIndex: 0,
       textStartPos: props.textStartPos
@@ -67,7 +68,7 @@ class CanvasIncrementalText extends React.Component {
   }
 
   startTextInterval () {
-    const { charInterval, onComplete } = this.props
+    const { charInterval } = this.props
     this.setState((prevState, props) => {
       const { text, highlightingLanguage } = props
       return {
@@ -77,22 +78,27 @@ class CanvasIncrementalText extends React.Component {
           .map(line => Prism.tokenize(line, Prism.languages[highlightingLanguage]))
       }
     }, () => {
-      this.intervalID = setInterval(
-        this.setState.bind(this,
-          (prevState, props) => {
-            if (prevState.textIndex >= props.text.length) {
-              clearInterval(this.intervalID)
-              if (typeof onComplete === 'function') onComplete()
-              return { ...prevState }
-            } else {
-              return {
-                ...prevState,
-                textIndex: prevState.textIndex + 1
-              }
-            }
-          })
-        , charInterval)
+      const intervalID = setInterval(this.update.bind(this), charInterval)
+      this.setState({ intervalID: intervalID })
     })
+  }
+
+  update () {
+    const { onComplete } = this.props
+    this.setState(
+      (prevState, props) => {
+        if (prevState.textIndex >= props.text.length) {
+          console.log('cancel id ', this.state.intervalID)
+          clearInterval(this.state.intervalID)
+          if (typeof onComplete === 'function') onComplete()
+          return { ...prevState }
+        } else {
+          return {
+            ...prevState,
+            textIndex: prevState.textIndex + 1
+          }
+        }
+      })
   }
 
   updateCanvas () {
@@ -166,14 +172,15 @@ class CanvasIncrementalText extends React.Component {
           ...prevState,
           textIndex: 0
         }
+      }, () => {
+        this.startTextInterval()
       })
     }
     this.updateCanvasSize()
-    this.startTextInterval()
   }
 
   componentWillUnmount () {
-    clearInterval(this.intervalID)
+    clearInterval(this.state.intervalID)
     window.removeEventListener('resize', this.updateCanvasSize.bind(this))
   }
 
