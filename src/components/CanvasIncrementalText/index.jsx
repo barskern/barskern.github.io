@@ -38,23 +38,29 @@ const highlightingColors = {
   'script': colors['default']
 }
 
-const drawToken = (ctx, parentType = 'default') => token => {
+const drawToken = (ctx, charsLeft, parentType = 'default') => token => {
   if (Array.isArray(token.content)) {
-    token.content.forEach(token => drawToken(ctx, token.type || parentType)(token))
-    return
+    let index = 0
+    do {
+      charsLeft = drawToken(ctx, charsLeft, token.type || parentType)(token.content[index++])
+    } while (charsLeft > 0 && index < token.content.length)
+    return charsLeft
   }
   const text = token.content || token
   const type = token.type || parentType
 
   ctx.fillStyle = highlightingColors[type || 'default'] || highlightingColors['default']
-  ctx.fillText(text, 0, 0)
-  ctx.translate(ctx.measureText(text).width, 0)
+  const textToDraw = text.length < charsLeft ? text : text.slice(0, charsLeft)
+  ctx.fillText(textToDraw, 0, 0)
+  ctx.translate(ctx.measureText(textToDraw).width, 0)
+  return Math.max(charsLeft - text.length, 0)
 }
 
 class CanvasIncrementalText extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      tokenlines: [],
       textIndex: 0,
       textStartPos: props.textStartPos
     }
@@ -62,27 +68,39 @@ class CanvasIncrementalText extends React.Component {
 
   startTextInterval () {
     const { charInterval, onComplete } = this.props
-    this.intervalID = setInterval(
-      this.setState.bind(this,
-        (prevState, props) => {
-          if (prevState.textIndex > props.text.length) {
-            clearInterval(this.intervalID)
-            if (typeof onComplete === 'function') onComplete()
-            return { ...prevState }
-          } else {
-            return {
-              ...prevState,
-              textIndex: prevState.textIndex + 1
+    this.setState((prevState, props) => {
+      const { text, highlightingLanguage } = props
+      return {
+        ...prevState,
+        tokenlines: text
+          .split('\n')
+          .map(line => Prism.tokenize(line, Prism.languages[highlightingLanguage]))
+      }
+    }, () => {
+      this.intervalID = setInterval(
+        this.setState.bind(this,
+          (prevState, props) => {
+            if (prevState.textIndex >= props.text.length) {
+              clearInterval(this.intervalID)
+              if (typeof onComplete === 'function') onComplete()
+              return { ...prevState }
+            } else {
+              return {
+                ...prevState,
+                textIndex: prevState.textIndex + 1
+              }
             }
-          }
-        })
-      , charInterval)
+          })
+        , charInterval)
+    })
   }
 
   updateCanvas () {
     const ctx = this.canvas.getContext('2d')
-    const { fontSize, fontFamily, highlightingLanguage, text } = this.props
-    const { textStartPos } = this.state
+    const { fontSize, fontFamily } = this.props
+    const { textStartPos, tokenlines, textIndex } = this.state
+
+    let charsLeft = textIndex
 
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
@@ -90,16 +108,16 @@ class CanvasIncrementalText extends React.Component {
     ctx.font = `${fontSize}px ${fontFamily}`
     ctx.translate(textStartPos.x, textStartPos.y)
 
-    text
-      .slice(0, this.state.textIndex)
-      .split('\n')
-      .map(line => Prism.tokenize(line, Prism.languages[highlightingLanguage]))
-      .forEach((lineTokens, lineNumber) => {
-        ctx.save()
-        ctx.translate(0, fontSize * lineNumber)
-        lineTokens.forEach(drawToken(ctx))
-        ctx.restore()
-      })
+    tokenlines.forEach((tokens, lineNumber) => {
+      ctx.save()
+      let index = 0
+      do {
+        charsLeft = drawToken(ctx, charsLeft)(tokens[index++])
+      } while (charsLeft > 0 && index < tokens.length)
+      ctx.restore()
+      ctx.translate(0, fontSize)
+    })
+
     ctx.restore()
   }
 
