@@ -53,11 +53,11 @@ class ProgrammingLanding extends React.Component {
   }
 
   render () {
-    const { authorName, authorAvatarURL } = this.props
+    const { authorName, authorAvatarURL, authorNickname } = this.props
     const { showAuthor } = this.state
     return (
       <div style={style}>
-        <OverlayBlur show={showAuthor}>
+        <OverlayBlur show={showAuthor} blurAmount={3}>
           <CanvasIncrementalText
             charInterval={30}
             text={landingText.join('\n')}
@@ -71,8 +71,10 @@ class ProgrammingLanding extends React.Component {
           <div style={styleAuthorInfo}>
             <AuthorAvatar
               avatarURL={authorAvatarURL}
-              authorName={authorName} />
-            <Header as='h1'>{authorName}</Header>
+              authorName={authorName}
+              size='middle' />
+            <Header as='h1' style={{ fontFamily: 'Beyno', fontSize: '40px', margin: '10px 0' }}>{authorNickname}</Header>
+            <Header as='h1' style={{ fontFamily: 'Beyno', fontSize: '20px', margin: '0 0' }}>{authorName}</Header>
           </div>
         </FadeInOut>
       </div>
@@ -82,6 +84,7 @@ class ProgrammingLanding extends React.Component {
 
 ProgrammingLanding.propTypes = {
   authorName: PropTypes.string.isRequired,
+  authorNickname: PropTypes.string.isRequired,
   authorAvatarURL: PropTypes.string.isRequired
 }
 

@@ -23,7 +23,7 @@ class Homepage extends React.Component {
     const { showPostPreviews } = this.state
 
     const siteTitle = data.site.siteMetadata.title
-    const authorName = data.site.siteMetadata.author.name
+    const { name: authorName, nickname: authorNickname } = data.site.siteMetadata.author
     const authorAvatarURL = data.pageAuthorAvatarData.avatar.newSize.src
     const markdownNodes = data.posts.edges
 
@@ -33,6 +33,7 @@ class Homepage extends React.Component {
 
         <ProgrammingLanding
           authorName={authorName}
+          authorNickname={authorNickname}
           authorAvatarURL={authorAvatarURL} />
         {markdownNodes.map(({ node }, index) =>
           <FadeInFromSide
@@ -64,6 +65,7 @@ query IndexQuery {
       title
       author {
         name
+        nickname
       }
     }
   }
