@@ -14,8 +14,7 @@ const style = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  width: '100vw',
-  height: '100vh'
+  minHeight: '100vh'
 }
 
 class Template extends React.Component {
