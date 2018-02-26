@@ -62,7 +62,7 @@ class CanvasIncrementalText extends React.Component {
     this.state = {
       intervalID: 0,
       tokenlines: [],
-      textIndex: 0,
+      textIndex: props.startAtTextIndex,
       textStartPos: props.textStartPos
     }
   }
@@ -88,7 +88,6 @@ class CanvasIncrementalText extends React.Component {
     this.setState(
       (prevState, props) => {
         if (prevState.textIndex >= props.text.length) {
-          console.log('cancel id ', this.state.intervalID)
           clearInterval(this.state.intervalID)
           if (typeof onComplete === 'function') onComplete()
           return { ...prevState }
@@ -166,11 +165,11 @@ class CanvasIncrementalText extends React.Component {
     const { onRestart } = nextProps
     // Start from scratch ONLY if the new text doesn't contain current text
     if (!nextProps.text.includes(this.props.text)) {
-      this.setState(prevState => {
+      this.setState((prevState, props) => {
         if (typeof onRestart === 'function') onRestart()
         return {
           ...prevState,
-          textIndex: 0
+          textIndex: props.startAtTextIndex
         }
       }, () => {
         this.startTextInterval()
@@ -200,7 +199,8 @@ CanvasIncrementalText.defaultProps = {
     y: 30
   },
   highlightingLanguage: 'javascript',
-  centerText: false
+  centerText: false,
+  startAtTextIndex: 0
 }
 
 CanvasIncrementalText.propTypes = {
@@ -212,7 +212,8 @@ CanvasIncrementalText.propTypes = {
   highlightingLanguage: PropTypes.string,
   onRestart: PropTypes.func,
   onComplete: PropTypes.func,
-  centerText: PropTypes.bool
+  centerText: PropTypes.bool,
+  startAtTextIndex: PropTypes.number
 }
 
 export default CanvasIncrementalText

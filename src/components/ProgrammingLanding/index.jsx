@@ -37,18 +37,23 @@ const styleAuthorInfo = {
 }
 
 const landingText = [
+  'import React from \'react\'',
   'import ReactDOM from \'react-dom\'',
-  'import AvatarURL from \'../images/awesome_avatar.png\'',
+  'import AvatarURL from \'./avatar.png\'',
   '',
-  'const Avatar = ({ authorName, authorNickname }) =>',
+  'const Avatar = ({ name, nickname }) =>',
   '  <div id=\'author-avatar\'>',
   '    <img src={AvatarURL} />',
-  '    <h1>{authorNickname}</h1>',
-  '    <h2>{authorName}</h2>',
+  '    <h1>{nickname}</h1>',
+  '    <h2>{name}</h2>',
   '  </div>',
   '',
-  'ReactDOM.render(<Avatar authorName=\'Ole Martin Ruud\' />,',
-  '  document.getElementById(\'landing\'))'
+  'ReactDOM.render(',
+  '  <Avatar',
+  '    nickname=\'barskern\'',
+  '    name=\'Ole Martin Ruud\' />,',
+  '  document.getElementById(\'landing\')',
+  ')'
 ]
 
 class ProgrammingLanding extends React.Component {
@@ -66,7 +71,8 @@ class ProgrammingLanding extends React.Component {
       <div style={style}>
         <OverlayBlur show={showAuthor} blurAmount={3}>
           <CanvasIncrementalText
-            charInterval={30}
+            startAtTextIndex={130}
+            charInterval={15}
             text={landingText.join('\n')}
             highlightingLanguage='jsx'
             centerText
