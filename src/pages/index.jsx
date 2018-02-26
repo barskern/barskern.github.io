@@ -9,7 +9,7 @@ import ProjectPreview from '../components/ProjectPreview'
 import FadeInFromSide from '../hoc-components/FadeInFromSide'
 
 import 'prismjs/components/prism-jsx.min' // Import jsx-language for prism
-import { Divider } from 'semantic-ui-react'
+import { Divider, Header } from 'semantic-ui-react'
 
 class Homepage extends React.Component {
   constructor (props) {
@@ -39,7 +39,9 @@ class Homepage extends React.Component {
           authorNickname={authorNickname}
           authorAvatarURL={authorAvatarURL} />
 
-        <Divider hidden />
+        <Divider hidden section />
+        <Header as='h1' textAlign='center'>Blogposts</Header>
+        <Divider hidden section />
 
         {postNodes.map(({ node }, index) =>
           <FadeInFromSide
@@ -55,14 +57,41 @@ class Homepage extends React.Component {
 
         <Divider hidden section />
 
-        {projectNodes.map(({ node }, index) =>
-          <FadeInFromSide
-            key={node.link}
-            show={showPostPreviews}
-            fadeFrom={index % 2 === 0 ? 'left' : 'right'}>
-            <ProjectPreview {...node} />
-          </FadeInFromSide>
-        )}
+        <div style={{ position: 'relative', overflow: 'hidden' }}>
+          <div style={{
+            position: 'absolute',
+            zIndex: -100,
+            top: 0,
+            right: 0,
+            left: 0,
+            height: '100000%',
+            transform: 'skewY(-30deg)',
+            backgroundColor: '#2e2e2e'
+          }}/>
+          <div style={{
+            position: 'absolute',
+            zIndex: -100,
+            left: 0,
+            right: 0,
+            bottom: '100%',
+            height: '100%',
+            transform: 'skewY(30deg)',
+            backgroundColor: '#fff'
+          }} />
+
+          <Divider hidden section />
+          <Header as='h1' textAlign='center' style={{color: 'white'}}>Projects</Header>
+          <Divider hidden section />
+
+          {projectNodes.map(({ node }, index) =>
+            <FadeInFromSide
+              key={node.link}
+              show={showPostPreviews}
+              fadeFrom={index % 2 === 0 ? 'left' : 'right'}>
+              <ProjectPreview {...node} />
+            </FadeInFromSide>
+          )}
+        </div>
       </div>
     )
   }

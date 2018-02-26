@@ -5,7 +5,6 @@ import CanvasIncrementalText from '../CanvasIncrementalText'
 import AuthorAvatar from '../AuthorAvatar'
 import SkewedHoverLink from '../SkewedHoverLink'
 import FadeInOut from '../../hoc-components/FadeInOut'
-import FadeInFromSide from '../../hoc-components/FadeInFromSide'
 import OverlayBlur from '../../hoc-components/OverlayBlur'
 import { Header } from 'semantic-ui-react'
 
@@ -69,6 +68,26 @@ class ProgrammingLanding extends React.Component {
     const { showAuthor } = this.state
     return (
       <div style={style}>
+        <div style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          zIndex: -100,
+          height: '10000%',
+          backgroundColor: '#eee8d5',
+          transform: 'skewY(-30deg)'
+        }} />
+        <div style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          zIndex: -100,
+          height: '10000%',
+          backgroundColor: '#eee8d5',
+          transform: 'skewY(30deg)'
+        }} />
         <OverlayBlur show={showAuthor} blurAmount={3}>
           <CanvasIncrementalText
             startAtTextIndex={130}

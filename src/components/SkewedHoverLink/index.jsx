@@ -39,7 +39,9 @@ class SkewedHoverLink extends React.Component {
     const { skewAmount, side, to, children, show } = this.props
     const { isExpanded } = this.state
 
-    const baseTransform = `skewX(${skewAmount}deg)`
+    const mult = side === 'left' ? 1 : -1
+
+    const baseTransform = `skewX(${skewAmount * mult}deg)`
     const fullStyle = {
       ...style,
       transform: `${baseTransform}`,
@@ -50,10 +52,10 @@ class SkewedHoverLink extends React.Component {
     const enterOffset = 95
 
     const transitionStyle = {
-      'entering': { transform: `${baseTransform} translateX(${enterOffset * (side === 'left' ? -1 : 1)}%)` },
-      'entered': { transform: `${baseTransform} translateX(${enterOffset * (side === 'left' ? -1 : 1)}%)` },
-      'exiting': { transform: `${baseTransform} translateX(${exitOffset * (side === 'left' ? -1 : 1)}%)` },
-      'exited': { transform: `${baseTransform} translateX(${exitOffset * (side === 'left' ? -1 : 1)}%)` }
+      'entering': { transform: `${baseTransform} translateX(${enterOffset * -mult}%)` },
+      'entered': { transform: `${baseTransform} translateX(${enterOffset * -mult}%)` },
+      'exiting': { transform: `${baseTransform} translateX(${exitOffset * -mult}%)` },
+      'exited': { transform: `${baseTransform} translateX(${exitOffset * -mult}%)` }
     }
 
     const fullStyleChild = {
@@ -61,10 +63,10 @@ class SkewedHoverLink extends React.Component {
       ...(
         side === 'left'
           ? { top: '40px', right: '-10px' }
-          : { bottom: '26px', left: '-10px' }
+          : { top: '40px', left: '-10px' }
       ),
       fontSize: '16px',
-      transform: `skewX(${-skewAmount}deg) rotateZ(${2 * skewAmount}deg)`
+      transform: `skewX(${skewAmount * -mult}deg) rotateZ(${2 * skewAmount * mult}deg)`
     }
 
     return (

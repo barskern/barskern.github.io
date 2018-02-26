@@ -15,9 +15,9 @@ const AuthorDisplay = ({name, description, urls, email, avatarURL}) =>
       <SocialLinks urls={urls} email={email} />
     </Grid.Column>
     <Grid.Column style={{ minWidth: '170px' }}>
-      <Header as='h3'>
+      <Header as='h1' style={{ color: '#ffe' }}>
         {name}
-        <Header.Subheader>{description}</Header.Subheader>
+        <Header.Subheader style={{ color: '#ffe', marginTop: '10px' }}>{description}</Header.Subheader>
       </Header>
     </Grid.Column>
   </Grid>

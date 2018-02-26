@@ -6,7 +6,9 @@ import AuthorDisplay from '../../components/AuthorDisplay'
 
 const style = {
   background: 'linear-gradient(to top, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 100%)',
-  padding: '40px 25px'
+  padding: '40px 25px',
+  color: 'white',
+  backgroundColor: '#2e2e2e'
 }
 
 const Footer = (props) => {
