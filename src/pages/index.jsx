@@ -5,9 +5,11 @@ import { graphql } from 'graphql'
 
 import ProgrammingLanding from '../components/ProgrammingLanding'
 import PostPreview from '../components/PostPreview'
+import ProjectPreview from '../components/ProjectPreview'
 import FadeInFromSide from '../hoc-components/FadeInFromSide'
 
 import 'prismjs/components/prism-jsx.min' // Import jsx-language for prism
+import { Divider } from 'semantic-ui-react'
 
 class Homepage extends React.Component {
   constructor (props) {
@@ -23,9 +25,10 @@ class Homepage extends React.Component {
     const { showPostPreviews } = this.state
 
     const siteTitle = data.site.siteMetadata.title
-    const { name: authorName, nickname: authorNickname } = data.site.siteMetadata.author
+    const { authorName, authorNickname } = data.site.siteMetadata.author
     const authorAvatarURL = data.pageAuthorAvatarData.avatar.newSize.src
-    const markdownNodes = data.posts.edges
+    const postNodes = data.posts.edges
+    const projectNodes = data.projects.edges
 
     return (
       <div>
@@ -35,7 +38,10 @@ class Homepage extends React.Component {
           authorName={authorName}
           authorNickname={authorNickname}
           authorAvatarURL={authorAvatarURL} />
-        {markdownNodes.map(({ node }, index) =>
+
+        <Divider hidden />
+
+        {postNodes.map(({ node }, index) =>
           <FadeInFromSide
             key={node.fields.path}
             show={showPostPreviews}
@@ -45,7 +51,17 @@ class Homepage extends React.Component {
               {...node.fields}
               excerpt={node.excerpt} />
           </FadeInFromSide>
+        )}
 
+        <Divider hidden section />
+
+        {projectNodes.map(({ node }, index) =>
+          <FadeInFromSide
+            key={node.link}
+            show={showPostPreviews}
+            fadeFrom={index % 2 === 0 ? 'left' : 'right'}>
+            <ProjectPreview {...node} />
+          </FadeInFromSide>
         )}
       </div>
     )
@@ -64,8 +80,8 @@ query IndexQuery {
     siteMetadata {
       title
       author {
-        name
-        nickname
+        authorName: name
+        authorNickname: nickname
       }
     }
   }
@@ -76,7 +92,7 @@ query IndexQuery {
       }
     }
   }
-  posts: allMarkdownRemark(limit: 5, sort: { fields: [fields___date], order: DESC }) {
+  posts: allMarkdownRemark(limit: 4, sort: { fields: [fields___date], order: DESC }) {
     edges {
       node {
         excerpt
@@ -88,6 +104,17 @@ query IndexQuery {
           title
           tags
         }
+      }
+    }
+  }
+  projects: allProjectsJson(limit: 4) {
+    edges {
+      node {
+        title
+        thumbnailURL
+        link
+        description
+        tags
       }
     }
   }

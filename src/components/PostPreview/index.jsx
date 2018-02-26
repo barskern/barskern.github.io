@@ -20,6 +20,7 @@ const style = {
 const PostPreview = ({ title, date, path, excerpt, tags }) =>
   <Card
     link
+    color='green'
     style={style}
     onClick={() => navigateTo(path)}>
     <Card.Content>

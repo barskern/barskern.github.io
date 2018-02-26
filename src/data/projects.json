@@ -1,0 +1,13 @@
+[
+  {
+    "title": "Maanelander",
+    "thumbnailURL": "projects/maanelander-thumbnail.svg",
+    "link": "https://barskern.github.io/maanelander",
+    "description": "Maanelander was a game i made in 48 hours for my exam in the subject Information Technology 2 in highschool. The task was to make a 'replica' of the famous game Lunar Lander.",
+    "tags": [
+      "game",
+      "web",
+      "javascript"
+    ]
+  }
+]
