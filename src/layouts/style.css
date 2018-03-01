@@ -1,9 +1,0 @@
-@font-face {
-  font-family: Beyno;
-  src: url('../fonts/BEYNO.otf') format('opentype');
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-}

@@ -2,21 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import graphql from 'graphql'
 
-import Footer from './Footer'
-
-import 'typeface-roboto'
-
 import '../css/prism-solarized.css'
-import 'semantic-ui-css/semantic.min.css'
-import './style.css'
+import '../css/semantic-ui-yeti.min.css'
+import style from './style.sass'
 
-const style = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  minHeight: '100vh',
-  overflow: 'hidden'
-}
+import Footer from './Footer'
 
 class Template extends React.Component {
   render () {
@@ -25,7 +15,7 @@ class Template extends React.Component {
     const { pageAuthor } = data.site.siteMetadata
 
     return (
-      <div style={style}>
+      <div className={style.template}>
         <div>{children()}</div>
         <Footer
           authorInfo={pageAuthor}

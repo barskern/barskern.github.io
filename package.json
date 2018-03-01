@@ -9,6 +9,7 @@
     "gatsby-plugin-manifest": "^1.0.4",
     "gatsby-plugin-offline": "^1.0.4",
     "gatsby-plugin-pathdata": "^1.0.2",
+    "gatsby-plugin-postcss-sass": "^1.0.18",
     "gatsby-plugin-preact": "^1.0.3",
     "gatsby-plugin-react-helmet": "^1.0.3",
     "gatsby-plugin-sharp": "^1.6.2",
@@ -25,9 +26,7 @@
     "prismjs": "^1.11.0",
     "prop-types": "^15.6.0",
     "react-transition-group": "^2.2.1",
-    "semantic-ui-css": "^2.2.14",
-    "semantic-ui-react": "^0.78.2",
-    "typeface-roboto": "0.0.50"
+    "semantic-ui-react": "^0.78.2"
   },
   "devDependencies": {
     "eslint": "^4.16.0",
