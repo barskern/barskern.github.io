@@ -1,39 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import styles from './styles.sass'
+
 import CanvasIncrementalText from '../CanvasIncrementalText'
 import AuthorAvatar from '../AuthorAvatar'
 import SkewedHoverLink from '../SkewedHoverLink'
 import FadeInOut from '../../hoc-components/FadeInOut'
 import OverlayBlur from '../../hoc-components/OverlayBlur'
-import { Header } from 'semantic-ui-react'
-
-const size = {
-  width: '100%',
-  height: '100vh',
-  maxHeight: '300px'
-}
-
-const fillParent = {
-  ...size,
-  position: 'absolute',
-  top: 0,
-  left: 0
-}
-
-const style = {
-  ...size,
-  position: 'relative',
-  margin: 0
-}
-
-const styleAuthorInfo = {
-  ...fillParent,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center'
-}
 
 const landingText = [
   'import React from \'react\'',
@@ -59,59 +33,40 @@ class ProgrammingLanding extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      showAuthor: false
+      showInfo: false
     }
   }
 
   render () {
     const { authorName, authorAvatarURL, authorNickname } = this.props
-    const { showAuthor } = this.state
+    const { showInfo } = this.state
     return (
-      <div style={style}>
-        <div style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          zIndex: -100,
-          height: '10000%',
-          backgroundColor: '#eee8d5',
-          transform: 'skewY(-30deg)'
-        }} />
-        <div style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          zIndex: -100,
-          height: '10000%',
-          backgroundColor: '#eee8d5',
-          transform: 'skewY(30deg)'
-        }} />
-        <OverlayBlur show={showAuthor} blurAmount={3}>
+      <div className={styles.landing}>
+
+        <OverlayBlur show={showInfo} blurAmount={3}>
           <CanvasIncrementalText
-            startAtTextIndex={130}
+            startAtTextIndex={160}
             charInterval={15}
             text={landingText.join('\n')}
             highlightingLanguage='jsx'
             centerText
-            onRestart={() => this.setState({ showAuthor: false })}
-            onComplete={() => this.setState({ showAuthor: true })} />
+            onRestart={() => this.setState({ showInfo: false })}
+            onComplete={() => this.setState({ showInfo: true })} />
         </OverlayBlur>
 
-        <FadeInOut show={showAuthor}>
-          <div style={styleAuthorInfo}>
+        <FadeInOut show={showInfo}>
+          <div className={styles.info}>
             <AuthorAvatar
               avatarURL={authorAvatarURL}
               authorName={authorName}
               size='small' />
-            <Header as='h1' style={{ fontFamily: 'Beyno', fontSize: '40px', margin: '10px 0' }}>{authorNickname}</Header>
-            <Header as='h1' style={{ fontFamily: 'Beyno', fontSize: '20px', margin: '0 0' }}>{authorName}</Header>
+            <h1 className={styles['info-nickname']}>{authorNickname}</h1>
+            <h1 className={styles['info-name']}>{authorName}</h1>
           </div>
         </FadeInOut>
 
-        <SkewedHoverLink show={showAuthor} to='/posts'>Blogposts</SkewedHoverLink>
-        <SkewedHoverLink show={showAuthor} to='/projects' side='right'>Projects</SkewedHoverLink>
+        <SkewedHoverLink show={showInfo} to='/posts'>Blogposts</SkewedHoverLink>
+        <SkewedHoverLink show={showInfo} to='/projects' side='right'>Projects</SkewedHoverLink>
       </div>
     )
   }

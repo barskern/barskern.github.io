@@ -4,18 +4,12 @@ import { withPrefix } from 'gatsby-link'
 
 import { Divider, Card, Label, Image } from 'semantic-ui-react'
 
-const style = {
-  width: '95%',
-  margin: '10px auto',
-  maxWidth: '400px'
-}
-
 const ProjectPreview = ({ title, link, description, tags, thumbnailURL }) => {
   return (
     <Card
       color='teal'
       link
-      style={style}
+      fluid
       onClick={() => { window.location.href = link }}>
       <Image src={withPrefix(thumbnailURL)} style={{ backgroundColor: '#333' }} />
       <Card.Content>

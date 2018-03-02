@@ -1,26 +1,24 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Grid, Header } from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react'
+
+import styles from './styles.sass'
 
 import SocialLinks from '../SocialLinks'
 import AuthorAvatar from '../AuthorAvatar'
 
 const AuthorDisplay = ({name, description, urls, email, avatarURL}) =>
-  <Grid columns={2} centered>
-    <Grid.Column width={2} style={{ minWidth: '90px' }}>
-      <AuthorAvatar
-        authorName={name}
-        avatarURL={avatarURL} />
+  <div className={styles.container}>
+    <div className={styles.links}>
+      <AuthorAvatar authorName={name} avatarURL={avatarURL} />
       <SocialLinks urls={urls} email={email} />
-    </Grid.Column>
-    <Grid.Column style={{ minWidth: '170px' }}>
-      <Header as='h1' style={{ color: '#ffe' }}>
-        {name}
-        <Header.Subheader style={{ color: '#ffe', marginTop: '10px' }}>{description}</Header.Subheader>
-      </Header>
-    </Grid.Column>
-  </Grid>
+    </div>
+    <div className={styles.info}>
+      <Header as='h1' inverted>{name}</Header>
+      <p>{description}</p>
+    </div>
+  </div>
 
 AuthorDisplay.propTypes = {
   avatarURL: PropTypes.string.isRequired,

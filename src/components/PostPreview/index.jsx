@@ -11,17 +11,12 @@ const formatPreviewDate = (dateString) => {
     .isAfter(moment().month(-1)) ? date.fromNow() : date.format('D. MMMM, YYYY')
 }
 
-const style = {
-  width: '95%',
-  margin: '10px auto',
-  maxWidth: '400px'
-}
-
 const PostPreview = ({ title, date, path, excerpt, tags }) =>
   <Card
     link
     color='green'
-    style={style}
+    fluid
+    raised
     onClick={() => navigateTo(path)}>
     <Card.Content>
       <Card.Header>{title}</Card.Header>

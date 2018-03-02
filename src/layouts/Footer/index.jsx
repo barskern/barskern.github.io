@@ -2,21 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'graphql'
 
-import AuthorDisplay from '../../components/AuthorDisplay'
+import style from './style.sass'
 
-const style = {
-  background: 'linear-gradient(to top, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 100%)',
-  padding: '40px 25px',
-  color: 'white',
-  backgroundColor: '#2e2e2e'
-}
+import AuthorDisplay from '../../components/AuthorDisplay'
 
 const Footer = (props) => {
   const { authorInfo, authorAvatarData } = props
   const avatarURL = authorAvatarData.avatar.newSize.src
 
   return (
-    <div style={style}>
+    <div className={style.footer}>
       <AuthorDisplay {...authorInfo} avatarURL={avatarURL} />
     </div>
   )
