@@ -24,7 +24,7 @@ const PostPreview = ({ title, date, path, excerpt, tags }) =>
         <Divider />
         <Label.Group>
           {tags.map(tag =>
-            <Label key={tag} as='a' basic color='grey'>{tag}</Label>
+            <Label key={tag} basic color='grey'>{tag}</Label>
           )}
         </Label.Group>
       </Card.Description>

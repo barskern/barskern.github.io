@@ -18,7 +18,7 @@ const ProjectPreview = ({ title, link, description, tags, thumbnailURL }) => {
           <Divider />
           <Label.Group>
             {tags.map(tag =>
-              <Label key={tag} as='a' basic color='grey'>{tag}</Label>
+              <Label key={tag} basic color='grey'>{tag}</Label>
             )}
           </Label.Group>
         </Card.Description>
