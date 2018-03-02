@@ -3,26 +3,21 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { graphql } from 'graphql'
 
+import styles from './styles.sass'
+
+import { Card, Header, Container } from 'semantic-ui-react'
+
 import ProgrammingLanding from '../components/ProgrammingLanding'
 import PostPreview from '../components/PostPreview'
 import ProjectPreview from '../components/ProjectPreview'
-import FadeInFromSide from '../hoc-components/FadeInFromSide'
 
 import 'prismjs/components/prism-jsx.min' // Import jsx-language for prism
-import { Divider, Header } from 'semantic-ui-react'
+
+const headerStyle = { paddingTop: '.4em', fontSize: '3.7em' }
 
 class Homepage extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      showPostPreviews: false
-    }
-
-    setTimeout(this.setState.bind(this, { showPostPreviews: true }), 300) // Add delay to optimize performace
-  }
   render () {
     const { data } = this.props
-    const { showPostPreviews } = this.state
 
     const siteTitle = data.site.siteMetadata.title
     const { authorName, authorNickname } = data.site.siteMetadata.author
@@ -31,7 +26,7 @@ class Homepage extends React.Component {
     const projectNodes = data.projects.edges
 
     return (
-      <div>
+      <div className={styles.page}>
         <Helmet title={siteTitle} />
 
         <ProgrammingLanding
@@ -39,58 +34,29 @@ class Homepage extends React.Component {
           authorNickname={authorNickname}
           authorAvatarURL={authorAvatarURL} />
 
-        <Divider hidden section />
-        <Header as='h1' textAlign='center'>Blogposts</Header>
-        <Divider hidden section />
-
-        {postNodes.map(({ node }, index) =>
-          <FadeInFromSide
-            key={node.fields.path}
-            show={showPostPreviews}
-            fadeFrom={index % 2 === 0 ? 'left' : 'right'}>
-            <PostPreview
-              {...node.frontmatter}
-              {...node.fields}
-              excerpt={node.excerpt} />
-          </FadeInFromSide>
-        )}
-
-        <Divider hidden section />
-
-        <div style={{ position: 'relative', overflow: 'hidden' }}>
-          <div style={{
-            position: 'absolute',
-            zIndex: -100,
-            top: 0,
-            right: 0,
-            left: 0,
-            height: '100000%',
-            transform: 'skewY(-30deg)',
-            backgroundColor: '#2e2e2e'
-          }}/>
-          <div style={{
-            position: 'absolute',
-            zIndex: -100,
-            left: 0,
-            right: 0,
-            bottom: '100%',
-            height: '100%',
-            transform: 'skewY(30deg)',
-            backgroundColor: '#fff'
-          }} />
-
-          <Divider hidden section />
-          <Header as='h1' textAlign='center' style={{color: 'white'}}>Projects</Header>
-          <Divider hidden section />
-
-          {projectNodes.map(({ node }, index) =>
-            <FadeInFromSide
-              key={node.link}
-              show={showPostPreviews}
-              fadeFrom={index % 2 === 0 ? 'left' : 'right'}>
-              <ProjectPreview {...node} />
-            </FadeInFromSide>
-          )}
+        <div className={styles.blogposts}>
+          <Container>
+            <Header as='h1' textAlign='center' style={headerStyle}>Blogposts</Header>
+            <Card.Group centered stackable itemsPerRow={2} style={{ padding: '1em 2em' }}>
+              {postNodes.map(({ node }, index) =>
+                <PostPreview
+                  key={node.fields.path}
+                  {...node.frontmatter}
+                  {...node.fields}
+                  excerpt={node.excerpt} />
+              )}
+            </Card.Group>
+          </Container>
+        </div>
+        <div className={styles.projects}>
+          <Container>
+            <Header as='h1' textAlign='center' inverted style={headerStyle}>Projects</Header>
+            <Card.Group stackable itemsPerRow={1} style={{ padding: '1em 2em' }}>
+              {projectNodes.map(({ node }) =>
+                <ProjectPreview key={node.id} {...node} />
+              )}
+            </Card.Group>
+          </Container>
         </div>
       </div>
     )
@@ -136,9 +102,10 @@ query IndexQuery {
       }
     }
   }
-  projects: allProjectsJson(limit: 4) {
+  projects: allProjectsJson(limit: 3) {
     edges {
       node {
+        id
         title
         thumbnailURL
         link

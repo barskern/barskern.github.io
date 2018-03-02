@@ -14,8 +14,6 @@ const formatPreviewDate = (dateString) => {
 const PostPreview = ({ title, date, path, excerpt, tags }) =>
   <Card
     link
-    color='green'
-    fluid
     raised
     onClick={() => navigateTo(path)}>
     <Card.Content>
@@ -24,9 +22,11 @@ const PostPreview = ({ title, date, path, excerpt, tags }) =>
       <Card.Description>
         {excerpt}
         <Divider />
-        {tags.map(tag =>
-          <Label key={tag}>{tag}</Label>
-        )}
+        <Label.Group>
+          {tags.map(tag =>
+            <Label key={tag} as='a' basic color='grey'>{tag}</Label>
+          )}
+        </Label.Group>
       </Card.Description>
     </Card.Content>
   </Card>

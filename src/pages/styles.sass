@@ -1,0 +1,25 @@
+
+@import '../sass/mixins'
+@import '../sass/extendables'
+@import '../sass/variables'
+
+\:local
+  .page
+    position: relative
+    
+    &:before
+      @extend %cover-parent
+      content: ''
+      background: $color-background
+      z-index: -11
+
+  .blogposts
+    padding-top: 3em
+    padding-bottom: 1em  
+    +background-arrow(#fefbfb, -10)
+
+  .projects
+    padding-top: 3em
+    padding-bottom: 1em      
+    +background-arrow(#2d2d2b, -10)
+    
