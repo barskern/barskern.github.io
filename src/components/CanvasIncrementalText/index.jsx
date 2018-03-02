@@ -100,7 +100,7 @@ class CanvasIncrementalText extends React.Component {
       })
   }
 
-  updateCanvas () {
+  drawCanvas () {
     const ctx = this.canvas.getContext('2d')
     const { fontSize, fontFamily } = this.props
     const { textStartPos, tokenlines, textIndex } = this.state
@@ -158,7 +158,7 @@ class CanvasIncrementalText extends React.Component {
   }
 
   componentWillUpdate () {
-    this.updateCanvas()
+    window.requestAnimationFrame(this.drawCanvas.bind(this))
   }
 
   componentWillReceiveProps (nextProps) {
