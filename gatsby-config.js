@@ -76,7 +76,7 @@ module.exports = {
       }
     },
     `gatsby-transformer-json`,
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
     `gatsby-plugin-postcss-sass`,
     `gatsby-plugin-react-helmet`
   ]
