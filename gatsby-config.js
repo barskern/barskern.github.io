@@ -15,8 +15,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/pages`,
-        name: 'pages'
+        path: `${__dirname}/src/data/blogposts`,
+        name: 'blogposts'
       }
     },
     {
@@ -48,12 +48,12 @@ module.exports = {
         extract: [
           {
             name: 'path',
-            selector: /.+posts\/(\d+-\d+-\d+-[\w-]+)\/index\.md$/,
+            selector: /.+blogposts\/(\d+-\d+-\d+-[\w-]+)\/index\.md$/,
             replacer: '/$1/'
           },
           {
             name: 'date',
-            selector: /.+posts\/(\d+-\d+-\d+)-[\w-]+\/index\.md$/,
+            selector: /.+blogposts\/(\d+-\d+-\d+)-[\w-]+\/index\.md$/,
             replacer: '$1'
           }
         ]
@@ -62,7 +62,7 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/src/data/images`,
         name: 'images'
       }
     },
@@ -71,7 +71,7 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/data`,
+        path: `${__dirname}/src/data/json`,
         name: 'json'
       }
     },

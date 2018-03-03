@@ -10,7 +10,7 @@ import { Card, Header, Container } from 'semantic-ui-react'
 import PostPreview from '../components/PostPreview'
 import ProjectPreview from '../components/ProjectPreview'
 
-import ProgrammingLanding from '../layouts/ProgrammingLanding'
+import ProgrammingLanding from '../composed-views/ProgrammingLanding'
 
 import 'prismjs/components/prism-jsx.min' // Import jsx-language for prism
 
@@ -19,7 +19,6 @@ const headerStyle = { paddingTop: '.4em', fontSize: '3.7em' }
 class Homepage extends React.Component {
   render () {
     const { data } = this.props
-
     const siteTitle = data.site.siteMetadata.title
     const { authorName, authorNickname } = data.site.siteMetadata.author
     const authorAvatarURL = data.pageAuthorAvatarData.avatar.newSize.src
@@ -33,7 +32,8 @@ class Homepage extends React.Component {
         <ProgrammingLanding
           authorName={authorName}
           authorNickname={authorNickname}
-          authorAvatarURL={authorAvatarURL} />
+          authorAvatarURL={authorAvatarURL}
+        />
 
         <div className={styles.blogposts}>
           <Container>
