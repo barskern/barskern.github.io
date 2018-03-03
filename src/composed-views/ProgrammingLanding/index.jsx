@@ -33,13 +33,15 @@ class ProgrammingLanding extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      showInfo: false
+      showInfo: false,
+      showLinks: false
     }
+    setTimeout(() => this.setState({ showLinks: true }), 400)
   }
 
   render () {
     const { authorName, authorAvatarURL, authorNickname } = this.props
-    const { showInfo } = this.state
+    const { showInfo, showLinks } = this.state
     return (
       <div className={styles.landing}>
 
@@ -65,8 +67,8 @@ class ProgrammingLanding extends React.Component {
           </div>
         </FadeInOut>
 
-        <SkewedHoverLink show={showInfo} to='/posts'>Blogposts</SkewedHoverLink>
-        <SkewedHoverLink show={showInfo} to='/projects' side='right'>Projects</SkewedHoverLink>
+        <SkewedHoverLink show={showLinks} to='/blogposts'>Blogposts</SkewedHoverLink>
+        <SkewedHoverLink show={showLinks} to='/projects' side='right'>Projects</SkewedHoverLink>
       </div>
     )
   }

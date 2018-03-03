@@ -3,7 +3,7 @@ title: "Cherio world"
 author: "Ole Martin Ruud"
 tags:
   - lorem
-  - ipsum
+  - proident
   - dorem
 ---
 
