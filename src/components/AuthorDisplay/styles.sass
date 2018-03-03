@@ -1,17 +1,23 @@
 @import '../../sass/extendables'
-  
+
 \:local
   .container
     @extend %flex-center
-    flex-direction: row
-    padding: .3em 2em
-
-  %flex-child
-    padding: 0 .6em
+    flex-direction: column
+    @media screen and (min-width: 600px)
+      flex-direction: row
+    padding: 0 8px
 
   .links
-    @extend %flex-child
+    @extend %flex-center
+    padding: 0 6px
+    margin-top: 10px
+    margin-bottom: 20px
 
   .info
-    @extend %flex-child
-    max-width: 21em
+    padding: 0 6px
+    max-width: 370px
+
+    &-description
+      text-align: center
+      max-width: 100%

@@ -26,7 +26,7 @@ export default Footer
 export const query = graphql`
 fragment authorAvatarData on File {
   avatar: childImageSharp {
-    newSize: resize (width: 128, height: 128){
+    newSize: resize (width: 256, height: 256){
       src
     }
   }

@@ -10,16 +10,16 @@
     &:before
       @extend %cover-parent
       content: ''
-      background: $color-background
+      background: $color-background-landing
       z-index: -11
 
   .blogposts
     padding-top: 3em
     padding-bottom: 1em  
-    +background-arrow(#fefbfb, -10)
+    +background-arrow($color-background-light, -10)
 
   .projects
     padding-top: 3em
     padding-bottom: 1em      
-    +background-arrow(#2d2d2b, -10)
+    +background-arrow($color-background-dark, -10)
     

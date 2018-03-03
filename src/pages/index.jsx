@@ -37,7 +37,7 @@ class Homepage extends React.Component {
         <div className={styles.blogposts}>
           <Container>
             <Header as='h1' textAlign='center' style={headerStyle}>Blogposts</Header>
-            <Card.Group centered stackable itemsPerRow={2} style={{ padding: '1em 2em' }}>
+            <Card.Group centered stackable itemsPerRow={2} style={{ padding: '1em 0em' }}>
               {postNodes.map(({ node }, index) =>
                 <PostPreview
                   key={node.fields.path}
@@ -51,7 +51,7 @@ class Homepage extends React.Component {
         <div className={styles.projects}>
           <Container>
             <Header as='h1' textAlign='center' inverted style={headerStyle}>Projects</Header>
-            <Card.Group stackable itemsPerRow={1} style={{ padding: '1em 2em' }}>
+            <Card.Group stackable itemsPerRow={1} style={{ padding: '1em 0em' }}>
               {projectNodes.map(({ node }) =>
                 <ProjectPreview key={node.id} {...node} />
               )}

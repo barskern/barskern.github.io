@@ -12,11 +12,11 @@ const AuthorDisplay = ({name, description, urls, email, avatarURL}) =>
   <div className={styles.container}>
     <div className={styles.links}>
       <AuthorAvatar authorName={name} avatarURL={avatarURL} />
-      <SocialLinks urls={urls} email={email} />
+      <SocialLinks urls={urls} email={email} vertical />
     </div>
     <div className={styles.info}>
-      <Header as='h1' inverted>{name}</Header>
-      <p>{description}</p>
+      <Header as='h2' inverted textAlign='center'>{name}</Header>
+      <p className={styles['info-description']}>{description}</p>
     </div>
   </div>
 
