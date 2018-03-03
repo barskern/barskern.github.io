@@ -7,9 +7,10 @@ import styles from './styles.sass'
 
 import { Card, Header, Container } from 'semantic-ui-react'
 
-import ProgrammingLanding from '../components/ProgrammingLanding'
 import PostPreview from '../components/PostPreview'
 import ProjectPreview from '../components/ProjectPreview'
+
+import ProgrammingLanding from '../layouts/ProgrammingLanding'
 
 import 'prismjs/components/prism-jsx.min' // Import jsx-language for prism
 

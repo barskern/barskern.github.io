@@ -24,14 +24,14 @@ Footer.propTypes = {
 export default Footer
 
 export const query = graphql`
-fragment authorAvatarData on File {
+fragment FooterAuthorAvatarData on File {
   avatar: childImageSharp {
     newSize: resize (width: 256, height: 256){
       src
     }
   }
 }
-fragment authorInfo on author_2 {
+fragment FooterAuthorInfo on author_2 {
   name
   description
   email

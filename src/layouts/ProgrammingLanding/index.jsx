@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 import styles from './styles.sass'
 
-import CanvasIncrementalText from '../CanvasIncrementalText'
-import AuthorAvatar from '../AuthorAvatar'
-import SkewedHoverLink from '../SkewedHoverLink'
+import CanvasIncrementalText from '../../components/CanvasIncrementalText'
+import AuthorAvatar from '../../components/AuthorAvatar'
+import SkewedHoverLink from '../../components/SkewedHoverLink'
 import FadeInOut from '../../hoc-components/FadeInOut'
 import OverlayBlur from '../../hoc-components/OverlayBlur'
 

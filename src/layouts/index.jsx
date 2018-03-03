@@ -4,7 +4,8 @@ import graphql from 'graphql'
 
 import '../css/prism-solarized.css'
 import '../css/semantic-ui-yeti.min.css'
-import style from './style.sass'
+
+import styles from './styles.sass'
 
 import Footer from './Footer'
 
@@ -15,7 +16,7 @@ class Template extends React.Component {
     const { pageAuthor } = data.site.siteMetadata
 
     return (
-      <div className={style.template}>
+      <div className={styles.template}>
         <div>{children()}</div>
         <Footer
           authorInfo={pageAuthor}
@@ -39,12 +40,12 @@ query TemplateData {
   site {
     siteMetadata {
       pageAuthor: author {
-        ...authorInfo
+        ...FooterAuthorInfo
       }
     }
   }
   pageAuthorAvatarData: file(sourceInstanceName: { eq: "images"}, name: { eq: "olemartinruud"}) {
-    ...authorAvatarData
+    ...FooterAuthorAvatarData
   }
 }
 `
