@@ -10,16 +10,20 @@
     &:before
       @extend %cover-parent
       content: ''
+      position: fixed
       background: $color-background-landing
       z-index: -11
 
   .blogposts
-    padding-top: 3em
-    padding-bottom: 1em  
-    +background-arrow($color-background-light, -10, 20deg)
+    padding-top: 2em
+    padding-bottom: 1em
+    +background-arrow($color-background-light, -10, 14deg)
 
   .projects
-    padding-top: 3em
-    padding-bottom: 1em      
-    +background-arrow($color-background-dark, -10, 20deg)
+    padding-top: 2em
+    padding-bottom: 1em
+    +background-arrow($color-background-dark, -10, 14deg)
+
+  .centering
+    @extend %flex-center
     

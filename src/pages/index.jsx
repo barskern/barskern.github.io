@@ -4,8 +4,9 @@ import { graphql } from 'graphql'
 
 import styles from './styles.sass'
 
+import { navigateTo } from 'gatsby-link'
 import Helmet from 'react-helmet'
-import { Card, Header, Container } from 'semantic-ui-react'
+import { Card, Header, Container, Button, Divider, Icon } from 'semantic-ui-react'
 
 import PostPreview from '../components/PostPreview'
 import ProjectPreview from '../components/ProjectPreview'
@@ -45,6 +46,9 @@ class Homepage extends React.Component {
             <Card.Group centered stackable itemsPerRow={2} style={cardGroupStyle}>
               {blogposts.map(blogpost => <PostPreview key={blogpost.path} {...blogpost} />)}
             </Card.Group>
+            <div className={styles.centering}>
+              <Button basic onClick={() => navigateTo('/blogposts')}>See more</Button>
+            </div>
           </Container>
         </div>
         <div className={styles.projects}>
@@ -53,6 +57,10 @@ class Homepage extends React.Component {
             <Card.Group centered stackable itemsPerRow={1} style={cardGroupStyle}>
               {projects.map(project => <ProjectPreview key={project.id} {...project} />)}
             </Card.Group>
+            <Divider hidden />
+            <div className={styles.centering}>
+              <Button inverted basic onClick={() => navigateTo('/blogposts')}>See more</Button>
+            </div>
           </Container>
         </div>
       </div>
