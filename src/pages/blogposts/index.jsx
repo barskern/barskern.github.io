@@ -103,7 +103,7 @@ class Blogposts extends React.Component {
           </Label.Group>
         </div>
         <Divider hidden />
-        <Card.Group centered stackable itemsPerRow={1} style={{ padding: '1em 0em' }}>
+        <Card.Group centered stackable itemsPerRow={2} style={{ padding: '1em 0em' }}>
           {blogposts.map(blogpost =>
             <PostPreview
               key={blogpost.id}
