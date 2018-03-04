@@ -48,7 +48,7 @@ module.exports = {
         extract: [
           {
             name: 'path',
-            selector: /.+blogposts\/(\d+-\d+-\d+-[\w-]+)\/index\.md$/,
+            selector: /.+(blogposts\/\d+-\d+-\d+-[\w-]+)\/index\.md$/,
             replacer: '/$1/'
           },
           {
