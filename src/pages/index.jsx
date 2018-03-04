@@ -6,7 +6,7 @@ import styles from './styles.sass'
 
 import { navigateTo } from 'gatsby-link'
 import Helmet from 'react-helmet'
-import { Card, Header, Container, Button, Divider, Icon } from 'semantic-ui-react'
+import { Card, Header, Container, Button, Divider } from 'semantic-ui-react'
 
 import PostPreview from '../components/PostPreview'
 import ProjectPreview from '../components/ProjectPreview'
@@ -59,7 +59,7 @@ class Homepage extends React.Component {
             </Card.Group>
             <Divider hidden />
             <div className={styles.centering}>
-              <Button inverted basic onClick={() => navigateTo('/blogposts')}>See more</Button>
+              <Button inverted basic onClick={() => navigateTo('/projects')}>See more</Button>
             </div>
           </Container>
         </div>

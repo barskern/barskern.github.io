@@ -4,7 +4,8 @@ import graphql from 'graphql'
 
 import styles from './styles.sass'
 
-import { Container, Header, Card, Search, Label, Divider } from 'semantic-ui-react'
+import { navigateTo } from 'gatsby-link'
+import { Container, Header, Card, Search, Label, Divider, Icon } from 'semantic-ui-react'
 
 import ProjectPreview from '../../components/ProjectPreview'
 
@@ -18,12 +19,12 @@ class Projects extends React.Component {
     }
   }
 
-  handleTagClick (e, { tagID }) {
+  handleTagClick (e, { children }) {
     this.setState(({ tagsSelected }) => ({
       tagsSelected: new Set(
-        tagsSelected.delete(tagID)
+        tagsSelected.delete(children)
           ? tagsSelected
-          : tagsSelected.add(tagID)
+          : tagsSelected.add(children)
       )
     }))
   }
@@ -70,44 +71,44 @@ class Projects extends React.Component {
       )
 
     return (
-      <Container>
-        <Divider hidden />
-        <Header as='h1' textAlign='center'>Projects</Header>
-        <Divider hidden />
-        <div className={styles['filter']}>
-          <Search
-            size='big'
-            showNoResults={false}
-            loading={filterIsLoading}
-            onSearchChange={this.handleInputChange.bind(this)}
-            value={searchbarValue}
-          />
+      <div className={styles.container}>
+        <Container>
           <Divider hidden />
-          <Label.Group size='large'>
-            {allTags.map(tag =>
-              <Label
-                tagID={tag}
-                as='a'
-                key={tag}
-                basic={!tagsSelected.has(tag)}
-                color='grey'
-                onClick={this.handleTagClick.bind(this)}
-              >
-                {tag}
-              </Label>
+          <Icon name='home' size='huge' inverted style={{ position: 'absolute' }} link onClick={() => navigateTo('/')} />
+          <Header as='h1' textAlign='center' inverted style={{ fontSize: '4em' }}>Projects</Header>
+          <Divider hidden />
+          <div className={styles['filter']}>
+            <Search
+              size='big'
+              showNoResults={false}
+              loading={filterIsLoading}
+              onSearchChange={this.handleInputChange.bind(this)}
+              value={searchbarValue}
+            />
+            <Divider hidden />
+            <Label.Group size='large'>
+              {allTags.map(tag =>
+                <Label
+                  as='a'
+                  key={tag}
+                  color={tagsSelected.has(tag) ? 'blue' : 'grey'}
+                  onClick={this.handleTagClick.bind(this)}
+                >
+                  {tag}
+                </Label>
+              )}
+            </Label.Group>
+          </div>
+          <Divider hidden />
+          <Card.Group centered stackable itemsPerRow={1} style={{ padding: '1em 0em' }}>
+            {projects.map(project =>
+              <ProjectPreview
+                key={project.id}
+                {...project} />
             )}
-          </Label.Group>
-        </div>
-        <Divider hidden />
-        <Card.Group centered stackable itemsPerRow={1} style={{ padding: '1em 0em' }}>
-          {projects.map(project =>
-            <ProjectPreview
-              key={project.id}
-              {...project} />
-          )}
-        </Card.Group>
-        <Divider hidden />
-      </Container>
+          </Card.Group>
+        </Container>
+      </div>
     )
   }
 }

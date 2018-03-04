@@ -10,7 +10,7 @@ const ProjectPreview = ({ title, link, description, tags, thumbnailURL }) => {
       link
       style={{ maxWidth: '400px', margin: '0 auto' }}
       onClick={() => { window.location.href = link }}>
-      <Image src={withPrefix(thumbnailURL)} style={{ backgroundColor: '#333' }} />
+      <Image src={withPrefix(thumbnailURL)} style={{ backgroundColor: '#2d2d2a' }} />
       <Card.Content>
         <Card.Header>{title}</Card.Header>
         <Card.Description>

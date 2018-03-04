@@ -4,7 +4,8 @@ import graphql from 'graphql'
 
 import styles from './styles.sass'
 
-import { Container, Header, Card, Search, Label, Divider } from 'semantic-ui-react'
+import { navigateTo } from 'gatsby-link'
+import { Container, Header, Card, Search, Label, Divider, Icon } from 'semantic-ui-react'
 
 import PostPreview from '../../components/PostPreview'
 
@@ -18,12 +19,12 @@ class Blogposts extends React.Component {
     }
   }
 
-  handleTagClick (e, { tagID }) {
+  handleTagClick (e, { children }) {
     this.setState(({ tagsSelected }) => ({
       tagsSelected: new Set(
-        tagsSelected.delete(tagID)
+        tagsSelected.delete(children)
           ? tagsSelected
-          : tagsSelected.add(tagID)
+          : tagsSelected.add(children)
       )
     }))
   }
@@ -70,7 +71,8 @@ class Blogposts extends React.Component {
     return (
       <Container>
         <Divider hidden />
-        <Header as='h1' textAlign='center'>Blogposts</Header>
+        <Icon name='home' size='huge' style={{ position: 'absolute' }} link onClick={() => navigateTo('/')} />
+        <Header as='h1' textAlign='center' style={{ fontSize: '4em' }}>Blogposts</Header>
         <Divider hidden />
         <div className={styles['filter']}>
           <Search
@@ -84,11 +86,10 @@ class Blogposts extends React.Component {
           <Label.Group size='large'>
             {allTags.map(tag =>
               <Label
-                tagID={tag}
                 as='a'
                 key={tag}
-                basic={!tagsSelected.has(tag)}
-                color='grey'
+                basic={true}
+                color={tagsSelected.has(tag) ? 'blue' : 'grey'}
                 onClick={this.handleTagClick.bind(this)}
               >
                 {tag}
@@ -104,7 +105,6 @@ class Blogposts extends React.Component {
               {...blogpost} />
           )}
         </Card.Group>
-        <Divider hidden />
       </Container>
     )
   }
