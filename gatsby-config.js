@@ -78,6 +78,49 @@ module.exports = {
     `gatsby-transformer-json`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-postcss-sass`,
-    `gatsby-plugin-react-helmet`
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'Barkerns blog',
+        short_name: 'Barskern',
+        start_url: '/',
+        background_color: '#2d2d2a',
+        theme_color: '#6392a4',
+        display: 'minimal-ui',
+        icons: [
+          {
+            src: `/favicons/16x16.png`,
+            sizes: `16x16`,
+            type: `image/png`
+          },
+          {
+            src: `/favicons/32x32.png`,
+            sizes: `32x32`,
+            type: `image/png`
+          },
+          {
+            src: `/favicons/64x64.png`,
+            sizes: `64x64`,
+            type: `image/png`
+          },
+          {
+            src: `/favicons/128x128.png`,
+            sizes: `128x128`,
+            type: `image/png`
+          },
+          {
+            src: `/favicons/256x256.png`,
+            sizes: `256x256`,
+            type: `image/png`
+          },
+          {
+            src: `/favicons/512x512.png`,
+            sizes: `512x512`,
+            type: `image/png`
+          }
+        ]
+      }
+    }
   ]
 }
