@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import graphql from 'graphql'
 
 import '../css/prism-solarized.css'
-import '../css/semantic-ui-yeti.min.css'
+import '../../semantic/dist/semantic.min.css'
 
 import styles from './styles.sass'
 
