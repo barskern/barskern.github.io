@@ -4,7 +4,8 @@ import Helmet from 'react-helmet'
 import { graphql } from 'graphql'
 import moment from 'moment'
 
-import { Header, Container } from 'semantic-ui-react'
+import { navigateTo } from 'gatsby-link'
+import { Header, Container, Divider, Icon } from 'semantic-ui-react'
 
 const BlogPost = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -18,11 +19,18 @@ const BlogPost = ({ data }) => {
     <div>
       <Helmet title={tabTitle} />
       <Container text style={{ paddingTop: '20px' }}>
+        <Icon
+          name='home'
+          size='huge'
+          link
+          style={{ position: 'absolute', right: '20px', top: '20px' }}
+          onClick={() => navigateTo('/')} />
         <Header as='h1'>
           {title}
           <Header.Subheader>{moment(date).format('LL')}</Header.Subheader>
         </Header>
         <p dangerouslySetInnerHTML={{ __html: post.html }} />
+        <Divider hidden />
       </Container>
     </div>
   )
