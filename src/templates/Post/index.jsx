@@ -27,7 +27,7 @@ const BlogPost = ({ data }) => {
           onClick={() => navigateTo('/')} />
         <Divider hidden fitted />
         <Divider hidden />
-        <Header as='h1'>
+        <Header as='h1' style={{ fontSize: '2.3em' }}>
           {title}
           <Header.Subheader>
             {moment(date).format('LL')}
