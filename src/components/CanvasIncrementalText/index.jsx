@@ -101,6 +101,8 @@ class CanvasIncrementalText extends React.Component {
   }
 
   drawCanvas () {
+    if (!this.canvas) return
+
     const ctx = this.canvas.getContext('2d')
     const { fontSize, fontFamily } = this.props
     const { textStartPos, tokenlines, textIndex } = this.state
