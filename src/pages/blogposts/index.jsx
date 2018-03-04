@@ -70,14 +70,13 @@ class Blogposts extends React.Component {
 
     return (
       <Container>
-        <Divider hidden />
         <Icon
           name='home'
-          size='huge'
+          size='big'
           link
-          style={{ position: 'absolute', right: '20px', top: '20px' }}
+          style={{ position: 'absolute', right: '14px', top: '14px' }}
           onClick={() => navigateTo('/')} />
-        <Header as='h1' textAlign='center' style={{ fontSize: '4em' }}>Blogposts</Header>
+        <Header as='h1' textAlign='center' style={{ fontSize: '3.6em' }}>Blogposts</Header>
         <Divider hidden />
         <div className={styles['filter']}>
           <Search

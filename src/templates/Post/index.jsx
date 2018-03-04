@@ -18,12 +18,12 @@ const BlogPost = ({ data }) => {
   return (
     <div>
       <Helmet title={tabTitle} />
-      <Container text style={{ paddingTop: '20px' }}>
+      <Container text>
         <Icon
           name='home'
-          size='huge'
+          size='big'
           link
-          style={{ position: 'absolute', right: '20px', top: '20px' }}
+          style={{ position: 'absolute', right: '14px', top: '14px' }}
           onClick={() => navigateTo('/')} />
         <Header as='h1'>
           {title}

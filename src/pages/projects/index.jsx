@@ -73,15 +73,14 @@ class Projects extends React.Component {
     return (
       <div className={styles.container}>
         <Container>
-          <Divider hidden />
           <Icon
             name='home'
-            size='huge'
+            size='big'
             inverted
             link
-            style={{ position: 'absolute', right: '20px', top: '20px' }}
+            style={{ position: 'absolute', right: '14px', top: '14px' }}
             onClick={() => navigateTo('/')} />
-          <Header as='h1' textAlign='center' inverted style={{ fontSize: '4em' }}>Projects</Header>
+          <Header as='h1' textAlign='center' inverted style={{ fontSize: '3.6em' }}>Projects</Header>
           <Divider hidden />
           <div className={styles['filter']}>
             <Search
