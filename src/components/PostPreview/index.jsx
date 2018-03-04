@@ -11,7 +11,7 @@ const formatPreviewDate = (dateString) => {
     .isAfter(moment().month(-1)) ? date.fromNow() : date.format('D. MMMM, YYYY')
 }
 
-const PostPreview = ({ title, date, path, excerpt, tags }) =>
+const PostPreview = ({ title, date, path, description, tags }) =>
   <Card
     link
     raised
@@ -20,7 +20,7 @@ const PostPreview = ({ title, date, path, excerpt, tags }) =>
       <Card.Header>{title}</Card.Header>
       <Card.Meta>{formatPreviewDate(date)}</Card.Meta>
       <Card.Description>
-        {excerpt}
+        {description}
         <Divider />
         <Label.Group>
           {tags.map(tag =>
@@ -37,6 +37,6 @@ PostPreview.propTypes = {
   title: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  excerpt: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   tags: PropTypes.arrayOf(PropTypes.string)
 }
