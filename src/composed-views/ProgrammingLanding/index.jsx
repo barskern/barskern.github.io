@@ -66,9 +66,6 @@ class ProgrammingLanding extends React.Component {
             <h1 className={styles['info-name']}>{authorName}</h1>
           </div>
         </FadeInOut>
-
-        <SkewedHoverLink show={showLinks} to='/blogposts'>Blogposts</SkewedHoverLink>
-        <SkewedHoverLink show={showLinks} to='/projects' side='right'>Projects</SkewedHoverLink>
       </div>
     )
   }
