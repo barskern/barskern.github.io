@@ -5,30 +5,40 @@ import { graphql } from 'graphql'
 import moment from 'moment'
 
 import { navigateTo } from 'gatsby-link'
-import { Header, Container, Divider, Icon } from 'semantic-ui-react'
+import { Header, Container, Divider, Icon, List } from 'semantic-ui-react'
 
 const BlogPost = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
 
   const { post } = data
-  const { title } = post.frontmatter
+  const { title, tags } = post.frontmatter
   const { date } = post.fields
-  const tabTitle = title || siteTitle
+  const tabTitle = `${title} | ${siteTitle}` || siteTitle
 
   return (
     <div>
       <Helmet title={tabTitle} />
-      <Container text>
+      <Container text style={{ position: 'relative' }}>
         <Icon
           name='home'
           size='big'
           link
-          style={{ position: 'absolute', right: '14px', top: '14px' }}
+          style={{ position: 'absolute', right: 0, top: '14px' }}
           onClick={() => navigateTo('/')} />
+        <Divider hidden fitted />
+        <Divider hidden />
         <Header as='h1'>
           {title}
-          <Header.Subheader>{moment(date).format('LL')}</Header.Subheader>
+          <Header.Subheader>
+            {moment(date).format('LL')}
+            <List horizontal floated='right'>
+              {tags.map(tag =>
+                <List.Item key={tag}>{tag}</List.Item>
+              )}
+            </List>
+          </Header.Subheader>
         </Header>
+
         <p dangerouslySetInnerHTML={{ __html: post.html }} />
         <Divider hidden />
       </Container>
@@ -56,6 +66,7 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
+        tags
       }
     }
   }

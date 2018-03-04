@@ -43,7 +43,7 @@ class Blogposts extends React.Component {
 
     // Flattens node object so that all info about a blogpost is in a flat object
     const allBlogposts = data.blogposts.edges
-      .map(({ node }) => ({ id: node.id, excerpt: node.excerpt, ...node.fields, ...node.frontmatter }))
+      .map(({ node }) => ({ id: node.id, ...node.fields, ...node.frontmatter }))
 
     // Gets all possible tags from all blogposts
     const allTags = Array.from(
@@ -69,13 +69,14 @@ class Blogposts extends React.Component {
       )
 
     return (
-      <Container>
+      <Container style={{ position: 'relative' }}>
         <Icon
           name='home'
           size='big'
           link
-          style={{ position: 'absolute', right: '14px', top: '14px' }}
+          style={{ position: 'absolute', right: 0, top: '14px' }}
           onClick={() => navigateTo('/')} />
+        <Divider hidden fitted />
         <Header as='h1' textAlign='center' style={{ fontSize: '3.6em' }}>Blogposts</Header>
         <Divider hidden />
         <div className={styles['filter']}>
@@ -126,7 +127,6 @@ query Blogposts {
     edges {
       node {
         id
-        excerpt
         fields {
           path
           date
@@ -134,6 +134,7 @@ query Blogposts {
         frontmatter {
           title
           tags
+          description
         }
       }
     }
