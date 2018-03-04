@@ -26,7 +26,7 @@ class Homepage extends React.Component {
     const authorAvatarURL = data.pageAuthorAvatarData.avatar.newSize.src
 
     const blogposts = data.blogposts.edges
-      .map(({ node }) => ({ id: node.id, excerpt: node.excerpt, ...node.fields, ...node.frontmatter }))
+      .map(({ node }) => ({ id: node.id, ...node.fields, ...node.frontmatter }))
 
     const projects = data.projects.edges.map(({node}) => ({...node}))
 
@@ -96,7 +96,6 @@ query IndexQuery {
     edges {
       node {
         id
-        excerpt
         fields {
           path
           date
@@ -104,6 +103,7 @@ query IndexQuery {
         frontmatter {
           title
           tags
+          description
         }
       }
     }
