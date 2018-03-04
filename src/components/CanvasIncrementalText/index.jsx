@@ -127,6 +127,8 @@ class CanvasIncrementalText extends React.Component {
   }
 
   updateCanvasSize () {
+    if (!this.canvas) return
+
     this.canvas.width = this.canvas.offsetWidth
     this.canvas.height = this.canvas.offsetHeight
 
