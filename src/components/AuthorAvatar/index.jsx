@@ -4,10 +4,14 @@ import PropTypes from 'prop-types'
 import { withPrefix } from 'gatsby-link'
 import { Image } from 'semantic-ui-react'
 
-const AuthorAvatar = ({authorName, avatarURL, size}) =>
+const style = {
+  backgroundColor: '#63a0a4'
+}
+
+const AuthorAvatar = ({ authorName, avatarURL, size }) =>
   <Image
     circular
-    centered
+    style={style}
     size={size}
     src={withPrefix(avatarURL)} />
 

@@ -13,8 +13,6 @@ import ProjectPreview from '../components/ProjectPreview'
 
 import ProgrammingLanding from '../composed-views/ProgrammingLanding'
 
-import 'prismjs/components/prism-jsx.min' // Import jsx-language for prism
-
 const headerStyle = { paddingTop: '.4em', fontSize: '3.7em' }
 const cardGroupStyle = { padding: '1em 0em' }
 
@@ -28,7 +26,7 @@ class Homepage extends React.Component {
     const blogposts = data.blogposts.edges
       .map(({ node }) => ({ id: node.id, ...node.fields, ...node.frontmatter }))
 
-    const projects = data.projects.edges.map(({node}) => ({...node}))
+    const projects = data.projects.edges.map(({ node }) => ({ ...node }))
 
     return (
       <div className={styles.page}>
@@ -87,7 +85,7 @@ query IndexQuery {
   }
   pageAuthorAvatarData: file(sourceInstanceName: { eq: "images"}, name: { eq: "olemartinruud"}) {
     avatar: childImageSharp {
-      newSize: resize (width: 256, height: 256){
+      newSize: resize (width: 512, height: 512){
         src
       }
     }

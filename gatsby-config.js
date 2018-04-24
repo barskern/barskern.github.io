@@ -4,7 +4,7 @@ module.exports = {
     author: {
       name: 'Ole Martin Ruud',
       nickname: 'barskern',
-      description: 'Working towards becoming a software engineer. Has a 🔥 passion for 💻💻.',
+      description: 'A novice programmer from Norway.\nI enjoy Rust, Web and C++.',
       email: 'barskern@outlook.com',
       urls: {
         'github': 'https://github.com/barskern'
