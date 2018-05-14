@@ -5,12 +5,12 @@ import { withPrefix } from 'gatsby-link'
 import { Image } from 'semantic-ui-react'
 
 const style = {
-  backgroundColor: '#63a0a4'
+  backgroundColor: '#555',
+  clipPath: 'polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%)'
 }
 
 const AuthorAvatar = ({ authorName, avatarURL, size }) =>
   <Image
-    circular
     style={style}
     size={size}
     src={withPrefix(avatarURL)} />
