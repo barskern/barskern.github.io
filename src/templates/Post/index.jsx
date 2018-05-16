@@ -11,7 +11,7 @@ const BlogPost = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
 
   const { post, iconFile } = data
-  const icon = (iconFile && iconFile.child.res.src) || ''
+  const icon = (iconFile && iconFile.child.res.src) || false
   const { title, tags } = post.frontmatter
   const { date } = post.fields
   const tabTitle = `${title} | ${siteTitle}` || siteTitle
@@ -39,8 +39,7 @@ const BlogPost = ({ data }) => {
             </List>
           </Header.Subheader>
         </Header>
-
-        <Image size='small' spaced src={icon} floated="right" />
+        {icon && <Image size='small' spaced src={icon} floated="right" />}
         <p dangerouslySetInnerHTML={{ __html: post.html }} />
         <Divider hidden />
       </Container>
