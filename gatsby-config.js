@@ -88,13 +88,13 @@ module.exports = {
         background_color: '#2d2d2a',
         theme_color: '#555',
         display: 'minimal-ui',
-        icon: "src/favicon.png",
+        icon: 'src/favicon.png'
       }
     },
     {
       resolve: `gatsby-plugin-favicon`,
       options: {
-        logo: "./src/favicon.png",
+        logo: './src/favicon.png',
         injectHTML: true,
         icons: {
           android: true,

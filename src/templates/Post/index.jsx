@@ -5,12 +5,13 @@ import { graphql } from 'graphql'
 import moment from 'moment'
 
 import { navigateTo } from 'gatsby-link'
-import { Header, Container, Divider, Icon, List } from 'semantic-ui-react'
+import { Header, Container, Divider, Icon, List, Image } from 'semantic-ui-react'
 
 const BlogPost = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
 
-  const { post } = data
+  const { post, iconFile } = data
+  const icon = (iconFile && iconFile.child.res.src) || ''
   const { title, tags } = post.frontmatter
   const { date } = post.fields
   const tabTitle = `${title} | ${siteTitle}` || siteTitle
@@ -39,6 +40,7 @@ const BlogPost = ({ data }) => {
           </Header.Subheader>
         </Header>
 
+        <Image size='small' spaced src={icon} floated="right" />
         <p dangerouslySetInnerHTML={{ __html: post.html }} />
         <Divider hidden />
       </Container>
@@ -53,7 +55,7 @@ BlogPost.propTypes = {
 export default BlogPost
 
 export const pageQuery = graphql`
-  query BlogPostByPath($id: String!) {
+  query BlogPostByPath($id: String!, $icon: String) {
     site {
       siteMetadata {
         title
@@ -67,6 +69,14 @@ export const pageQuery = graphql`
       frontmatter {
         title
         tags
+        icon
+      }
+    }
+    iconFile: file(name: { eq: $icon }, sourceInstanceName: { eq: "images" }) {
+      child: childImageSharp {
+        res: resolutions(width: 256, height: 256) {
+          src
+        }
       }
     }
   }

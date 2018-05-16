@@ -16,6 +16,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                 date
               }
               id
+              frontmatter {
+                icon
+              }
             }
           }
         }
@@ -28,15 +31,17 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         const post = path.resolve('./src/templates/Post/index.jsx')
 
         result.data.allMarkdownRemark.edges.forEach(edge => {
-          const { id, fields } = edge.node
+          const { id, fields, frontmatter } = edge.node
           const { date, path } = fields
+          const { icon } = frontmatter
 
           createPage({
             path: path,
             component: post,
             context: {
               date: date,
-              id: id
+              id: id,
+              icon: icon
             }
           })
         })

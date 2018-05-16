@@ -5,8 +5,7 @@ tags:
   - rust
 difficulty: beginner
 description: "Rust is a programming language that had it's first major release in 2015. It has a brand new way of handling memory which will change the way you think about data."
-icon_names:
-  - rust_crab.png
+icon: rust_crab
 ---
 
 [Rust][1] has a lot of cool features. It is a systems programming language that aims to be a safe, fast and simple. One of the core characteristics is that it can guarante memory and thread safety, without needing a [garbage collector][2]. The way it achieves this is through a feature that separates [Rust][1] from all other programming languages; **ownership**.
