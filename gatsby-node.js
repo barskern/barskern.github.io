@@ -35,7 +35,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             path: path,
             component: post,
             context: {
-              path: path,
               date: date,
               id: id
             }

@@ -86,40 +86,27 @@ module.exports = {
         short_name: 'Barskern',
         start_url: '/',
         background_color: '#2d2d2a',
-        theme_color: '#6392a4',
+        theme_color: '#555',
         display: 'minimal-ui',
-        icons: [
-          {
-            src: `/favicons/16x16.png`,
-            sizes: `16x16`,
-            type: `image/png`
-          },
-          {
-            src: `/favicons/32x32.png`,
-            sizes: `32x32`,
-            type: `image/png`
-          },
-          {
-            src: `/favicons/64x64.png`,
-            sizes: `64x64`,
-            type: `image/png`
-          },
-          {
-            src: `/favicons/128x128.png`,
-            sizes: `128x128`,
-            type: `image/png`
-          },
-          {
-            src: `/favicons/256x256.png`,
-            sizes: `256x256`,
-            type: `image/png`
-          },
-          {
-            src: `/favicons/512x512.png`,
-            sizes: `512x512`,
-            type: `image/png`
-          }
-        ]
+        icon: "src/favicon.png",
+      }
+    },
+    {
+      resolve: `gatsby-plugin-favicon`,
+      options: {
+        logo: "./src/favicon.png",
+        injectHTML: true,
+        icons: {
+          android: true,
+          appleIcon: true,
+          appleStartup: true,
+          coast: true,
+          favicons: true,
+          firefox: true,
+          twitter: true,
+          yandex: true,
+          windows: true
+        }
       }
     }
   ]
