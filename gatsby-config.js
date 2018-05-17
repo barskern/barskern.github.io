@@ -1,10 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: 'Barskern',
+    title: 'Barskern\'s blog',
     author: {
       name: 'Ole Martin Ruud',
       nickname: 'barskern',
-      description: 'A novice programmer from Norway.\nI enjoy Rust, Web and C++.',
+      description: 'Rust 🦀, Web 🕸️ and Linux 🐧',
       email: 'barskern@outlook.com',
       urls: {
         'github': 'https://github.com/barskern'
