@@ -5,6 +5,8 @@ tags:
   - web
   - gatsby
 description: "This blog was built using Gatsby, which is a framework for generating static sites using React. In this first blogpost I will discuss my usage of this framework in the creation of this blog."
+icon: gatsby
+iconLink: https://gatsbyjs.org
 ---
 
 _This blog was built using [Gatsby][1], which is a framework for generating static sites using [React][2]. In this first blogpost I will discuss my usage of this framework in the creation of this blog._

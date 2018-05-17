@@ -12,7 +12,7 @@ const BlogPost = ({ data }) => {
 
   const { post, iconFile } = data
   const icon = (iconFile && iconFile.child.res.src) || false
-  const { title, tags } = post.frontmatter
+  const { title, tags, iconLink } = post.frontmatter
   const { date } = post.fields
   const tabTitle = `${title} | ${siteTitle}` || siteTitle
 
@@ -39,7 +39,7 @@ const BlogPost = ({ data }) => {
             </List>
           </Header.Subheader>
         </Header>
-        {icon && <Image size='small' spaced src={icon} floated="right" />}
+        {icon && <Image href={iconLink} style={{ maxWidth: '25%' }} size='small' spaced src={icon} floated="right" />}
         <p dangerouslySetInnerHTML={{ __html: post.html }} />
         <Divider hidden />
       </Container>
@@ -69,6 +69,7 @@ export const pageQuery = graphql`
         title
         tags
         icon
+        iconLink
       }
     }
     iconFile: file(name: { eq: $icon }, sourceInstanceName: { eq: "images" }) {
