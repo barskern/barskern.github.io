@@ -4,17 +4,9 @@ import { graphql } from 'graphql'
 
 import styles from './styles.sass'
 
-import { navigateTo } from 'gatsby-link'
 import Helmet from 'react-helmet'
-import { Card, Header, Container, Button, Divider } from 'semantic-ui-react'
 
-import PostPreview from '../components/PostPreview'
-import ProjectPreview from '../components/ProjectPreview'
-
-import ProgrammingLanding from '../composed-views/ProgrammingLanding'
-
-const headerStyle = { paddingTop: '.4em', fontSize: '3.7em' }
-const cardGroupStyle = { padding: '1em 0em' }
+import Sections from '../composed-views/Sections'
 
 class Homepage extends React.Component {
   render () {
@@ -31,36 +23,13 @@ class Homepage extends React.Component {
     return (
       <div className={styles.page}>
         <Helmet title={siteTitle} />
-
-        <ProgrammingLanding
+        <Sections.Landing
           authorName={authorName}
           authorNickname={authorNickname}
           authorAvatarURL={authorAvatarURL}
         />
-
-        <div className={styles.blogposts}>
-          <Container>
-            <Header as='h1' textAlign='center' style={headerStyle}>Blogposts</Header>
-            <Card.Group centered stackable itemsPerRow={2} style={cardGroupStyle}>
-              {blogposts.map(blogpost => <PostPreview key={blogpost.path} {...blogpost} />)}
-            </Card.Group>
-            <div className={styles.centering}>
-              <Button basic onClick={() => navigateTo('/blogposts')}>See more</Button>
-            </div>
-          </Container>
-        </div>
-        <div className={styles.projects}>
-          <Container>
-            <Header as='h1' textAlign='center' inverted style={headerStyle}>Projects</Header>
-            <Card.Group centered stackable itemsPerRow={1} style={cardGroupStyle}>
-              {projects.map(project => <ProjectPreview key={project.id} {...project} />)}
-            </Card.Group>
-            <Divider hidden />
-            <div className={styles.centering}>
-              <Button inverted basic onClick={() => navigateTo('/projects')}>See more</Button>
-            </div>
-          </Container>
-        </div>
+        <Sections.Blogposts blogposts={blogposts} />
+        <Sections.Projects projects={projects} />
       </div>
     )
   }
@@ -83,9 +52,9 @@ query IndexQuery {
       }
     }
   }
-  pageAuthorAvatarData: file(sourceInstanceName: { eq: "images"}, name: { eq: "olemartinruud"}) {
+  pageAuthorAvatarData: file(sourceInstanceName: { eq: "images" }, name: { eq: "olemartinruud" }) {
     avatar: childImageSharp {
-      newSize: resize (width: 512, height: 512){
+      newSize: resize(width: 512, height: 512) {
         src
       }
     }
