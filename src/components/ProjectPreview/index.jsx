@@ -10,9 +10,7 @@ const ProjectPreview = ({ title, link, description, tags, thumbnailURL }) => {
       link
       style={{ maxWidth: '400px' }}
       onClick={() => { window.location.href = link }}>
-      <div style={{ backgroundColor: '#2d2d2a', minHeight: '400px', padding: '10px' }}>
-        <Image fluid src={withPrefix(thumbnailURL)} />
-      </div>
+      <Image fluid src={withPrefix(thumbnailURL)} style={{ backgroundColor: '#2d2d2a', padding: '15px' }} />
       <Card.Content>
         <Card.Header>{title}</Card.Header>
         <Card.Description>{description}</Card.Description>

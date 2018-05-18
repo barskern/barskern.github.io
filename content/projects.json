@@ -3,7 +3,7 @@
     "title": "Maanelander",
     "thumbnailURL": "project-thumbnails/maanelander.svg",
     "link": "https://barskern.github.io/maanelander/",
-    "description": "Maanelander was a game I made in 48 hours for my exam in the subject Information Technology 2 in highschool. The task was to make a 'replica' of the famous game Lunar Lander.",
+    "description": "Maanelander was a game I made in 48 hours for my exam in the subject Information Technology 2 in highschool. The task was to make a replica of the famous game Lunar Lander.",
     "tags": [
       "programming",
       "web",
@@ -15,7 +15,7 @@
     "title": "Meteor Shower",
     "thumbnailURL": "project-thumbnails/meteor-shower.png",
     "link": "https://barskern.github.io/meteorshower/",
-    "description": "Meteor Shower is a small experimental project where I wanted to create a game where you would destory meteors. I was inspired by Asteroids, the arcade space shooter from the 80-ies.",
+    "description": "Meteor Shower is a small experimental project. I was inspired by Asteroids, the arcade space shooter from the 80-ies. Every meteor is procedurally generated and the destruction is relative to the mouse cursor.",
     "tags": [
       "programming",
       "web",
@@ -27,7 +27,7 @@
     "title": "Kommando Kompe",
     "thumbnailURL": "project-thumbnails/kommando-kompe.png",
     "link": "https://barskern.github.io/kommando-kompe/",
-    "description": "Kommando Kompe was the first game I ever made. Me and my friend created this game during High School as an assignment. It is rather simple, due to the fact that the entire game engine was built as a part of this project. Hence no external libraries at all.",
+    "description": "Kommando Kompe was the first game I ever made. My friend and I created this game during High School as an assignment. It is rather simple, due to the fact that the entire game engine was built as a part of this project. Hence this game contains no external libraries at all.",
     "tags": [
       "programming",
       "web",
