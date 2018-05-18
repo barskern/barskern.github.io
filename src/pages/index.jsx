@@ -75,7 +75,7 @@ query IndexQuery {
       }
     }
   }
-  projects: allProjectsJson(limit: 3) {
+  projects: allProjectsJson(limit: 4) {
     edges {
       node {
         id
