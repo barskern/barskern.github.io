@@ -27,13 +27,13 @@
     "prismjs": "^1.11.0",
     "prop-types": "^15.6.0",
     "react-transition-group": "^2.2.1",
-    "semantic-ui": "^2.3.0",
+    "semantic-ui": "^2.3.1",
     "semantic-ui-react": "^0.78.2"
   },
   "devDependencies": {
     "eslint": "^4.16.0",
     "eslint-config-standard": "^11.0.0-beta.0",
-    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "^7.6.1",
@@ -58,8 +58,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "develop": "gatsby develop",
     "build": "gatsby build",
-    "build-semantic": "cd semantic && gulp build",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public -b master",
-    "serve": "gatsby serve"
+    "serve": "gatsby serve",
+    "semantic-clean": "cd semantic && gulp clean",
+    "semantic-build": "cd semantic && gulp build",
+    "semantic-used-components": "find src -regex '.*.jsx' | xargs grep semantic-ui | cut -d '{' -f 2 | cut -d '}' -f 1 | tr , '\n' | tr -d ' ' | sort | uniq"
   }
 }
