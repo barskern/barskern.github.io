@@ -4,6 +4,7 @@ import graphql from 'graphql'
 
 import styles from './styles.sass'
 
+import Helmet from 'react-helmet'
 import { navigateTo } from 'gatsby-link'
 import { Container, Header, Card, Search, Label, Divider, Icon } from 'semantic-ui-react'
 
@@ -71,50 +72,49 @@ class Projects extends React.Component {
       )
 
     return (
-      <div className={styles.container}>
-        <Container style={{ position: 'relative' }}>
-          <Icon
-            name='home'
+      <Container style={{ position: 'relative' }}>
+        <Helmet bodyAttributes={{ class: styles.background }} />
+        <Icon
+          name='home'
+          size='big'
+          inverted
+          link
+          style={{ position: 'absolute', right: 0, top: '14px' }}
+          onClick={() => navigateTo('/')} />
+        <Divider hidden fitted />
+        <Header as='h1' textAlign='center' inverted style={{ fontSize: '3.6em' }}>Projects</Header>
+        <Divider hidden />
+        <div className={styles['filter']}>
+          <Search
             size='big'
-            inverted
-            link
-            style={{ position: 'absolute', right: 0, top: '14px' }}
-            onClick={() => navigateTo('/')} />
-          <Divider hidden fitted />
-          <Header as='h1' textAlign='center' inverted style={{ fontSize: '3.6em' }}>Projects</Header>
+            showNoResults={false}
+            loading={filterIsLoading}
+            onSearchChange={this.handleInputChange.bind(this)}
+            value={searchbarValue}
+          />
           <Divider hidden />
-          <div className={styles['filter']}>
-            <Search
-              size='big'
-              showNoResults={false}
-              loading={filterIsLoading}
-              onSearchChange={this.handleInputChange.bind(this)}
-              value={searchbarValue}
-            />
-            <Divider hidden />
-            <Label.Group size='large'>
-              {allTags.map(tag =>
-                <Label
-                  as='a'
-                  key={tag}
-                  color={tagsSelected.has(tag) ? 'blue' : 'grey'}
-                  onClick={this.handleTagClick.bind(this)}
-                >
-                  {tag}
-                </Label>
-              )}
-            </Label.Group>
-          </div>
-          <Divider hidden />
-          <Card.Group centered stackable itemsPerRow={1} style={{ padding: '1em 0em' }}>
-            {projects.map(project =>
-              <ProjectPreview
-                key={project.id}
-                {...project} />
+          <Label.Group size='large'>
+            {allTags.map(tag =>
+              <Label
+                as='a'
+                key={tag}
+                color={tagsSelected.has(tag) ? 'blue' : 'grey'}
+                onClick={this.handleTagClick.bind(this)}
+              >
+                {tag}
+              </Label>
             )}
-          </Card.Group>
-        </Container>
-      </div>
+          </Label.Group>
+        </div>
+        <Divider hidden />
+        <Card.Group centered stackable itemsPerRow={1} style={{ padding: '1em 0em' }}>
+          {projects.map(project =>
+            <ProjectPreview
+              key={project.id}
+              {...project} />
+          )}
+        </Card.Group>
+      </Container>
     )
   }
 }
