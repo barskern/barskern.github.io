@@ -31,6 +31,7 @@
     "image",
     "label",
     "list",
-    "search"
+    "search",
+    "input"
   ]
 }
