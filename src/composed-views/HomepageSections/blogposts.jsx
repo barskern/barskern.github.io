@@ -16,7 +16,7 @@ const Blogposts = ({ blogposts }) =>
       </Card.Group>
       <Divider hidden />
       <div className={styles.centering}>
-        <Button basic onClick={() => navigateTo('/blogposts')}>See more</Button>
+        <Button onClick={() => navigateTo('/blogposts')}>See more</Button>
       </div>
     </Container>
   </div>

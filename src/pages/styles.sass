@@ -1,14 +1,5 @@
-@import '../sass/mixins'
-@import '../sass/extendables'
 @import '../sass/variables'
 
 \:local
-  .page
-    position: relative
-    
-    &:before
-      @extend %cover-parent
-      content: ''
-      position: fixed
-      background: $color-background-landing
-      z-index: -11
+  .background
+    background: $color-background-landing

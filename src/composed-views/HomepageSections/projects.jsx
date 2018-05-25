@@ -11,7 +11,7 @@ const Projects = ({ projects }) =>
   <div className={styles.projects}>
     <Container>
       <Header as='h1' textAlign='center' inverted className={styles.header}>Projects</Header>
-      <Card.Group centered stackable itemsPerRow={1} className={styles['card-group']}>
+      <Card.Group centered stackable itemsPerRow={2} className={styles['card-group']}>
         {projects.map(project => <ProjectPreview key={project.id} {...project} />)}
       </Card.Group>
       <Divider hidden />

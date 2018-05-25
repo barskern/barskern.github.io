@@ -6,23 +6,25 @@ import styles from './styles.sass'
 
 import Helmet from 'react-helmet'
 
-import Sections from '../composed-views/Sections'
+import Sections from '../composed-views/HomepageSections'
 
 class Homepage extends React.Component {
   render () {
     const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const { authorName, authorNickname } = data.site.siteMetadata.author
-    const authorAvatarURL = data.pageAuthorAvatarData.avatar.newSize.src
+    const { site, authorData, dblogposts, dprojects } = data
 
-    const blogposts = data.blogposts.edges
+    const siteTitle = site.metadata.title
+    const { name: authorName, nickname: authorNickname } = site.metadata.author
+    const authorAvatarURL = authorData.avatar.newSize.src
+
+    const blogposts = dblogposts.edges
       .map(({ node }) => ({ id: node.id, ...node.fields, ...node.frontmatter }))
 
-    const projects = data.projects.edges.map(({ node }) => ({ ...node }))
+    const projects = dprojects.edges.map(({ node }) => ({ ...node }))
 
     return (
-      <div className={styles.page}>
-        <Helmet title={siteTitle} />
+      <div>
+        <Helmet title={siteTitle} bodyAttributes={{ class: styles.background }} />
         <Sections.Landing
           authorName={authorName}
           authorNickname={authorNickname}
@@ -44,22 +46,22 @@ export default Homepage
 export const pageQuery = graphql`
 query IndexQuery {
   site {
-    siteMetadata {
+    metadata: siteMetadata {
       title
       author {
-        authorName: name
-        authorNickname: nickname
+        name
+        nickname
       }
     }
   }
-  pageAuthorAvatarData: file(sourceInstanceName: { eq: "images" }, name: { eq: "olemartinruud" }) {
+  authorData: file(sourceInstanceName: { eq: "images" }, name: { eq: "olemartinruud" }) {
     avatar: childImageSharp {
       newSize: resize(width: 512, height: 512) {
         src
       }
     }
   }
-  blogposts: allMarkdownRemark(limit: 4, sort: { fields: [fields___date], order: DESC }) {
+  dblogposts: allMarkdownRemark(limit: 4, sort: { fields: [fields___date], order: DESC }) {
     edges {
       node {
         id
@@ -75,7 +77,7 @@ query IndexQuery {
       }
     }
   }
-  projects: allProjectsJson(limit: 4) {
+  dprojects: allProjectsJson(limit: 4) {
     edges {
       node {
         id
