@@ -50,10 +50,10 @@ class Filter extends React.Component {
 
 Filter.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.string),
-  selectedTags: PropTypes.object,
-  onTagClicked: PropTypes.func,
-  onSearchChange: PropTypes.func,
-  value: PropTypes.string
+  selectedTags: PropTypes.object.isRequired,
+  onTagClicked: PropTypes.func.isRequired,
+  onSearchChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired
 }
 
 export default Filter

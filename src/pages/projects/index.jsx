@@ -29,7 +29,7 @@ const Projects = ({ data }) => {
       <Divider hidden fitted />
       <Header as='h1' textAlign='center' inverted style={{ fontSize: '3.6em' }}>Projects</Header>
       <Divider hidden />
-      <FilterCards entries={allProjects} entryToCard={ProjectPreview} />
+      <FilterCards entries={allProjects} Preview={ProjectPreview} />
     </Container>
   )
 }

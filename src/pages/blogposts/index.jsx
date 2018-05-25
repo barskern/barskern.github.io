@@ -27,7 +27,7 @@ class Blogposts extends React.Component {
         <Divider hidden fitted />
         <Header as='h1' textAlign='center' style={{ fontSize: '3.6em' }}>Blogposts</Header>
         <Divider hidden />
-        <FilterCards entries={allBlogposts} entryToCard={PostPreview} />
+        <FilterCards entries={allBlogposts} Preview={PostPreview} />
       </Container>
     )
   }

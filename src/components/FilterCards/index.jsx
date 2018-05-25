@@ -30,7 +30,7 @@ class FilterCards extends React.Component {
   }
 
   render () {
-    const { entries, entryToCard } = this.props
+    const { entries, Preview } = this.props
     const { selectedTags, searchValue } = this.state
 
     const filteredEntries = entries
@@ -66,7 +66,7 @@ class FilterCards extends React.Component {
           selectedTags={selectedTags} />
         <Divider hidden />
         <Card.Group centered stackable itemsPerRow={2} style={{ padding: '1em 0em' }}>
-          {filteredEntries.map(entry => entryToCard({ key: entry.id, ...entry }))}
+          {filteredEntries.map(entry => <Preview key={entry.path} {...entry} />)}
         </Card.Group>
       </div>
     )
@@ -74,8 +74,12 @@ class FilterCards extends React.Component {
 }
 
 FilterCards.propTypes = {
-  entries: PropTypes.object,
-  entryToCard: PropTypes.func
+  entries: PropTypes.arrayOf(PropTypes.shape({
+    path: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string),
+    title: PropTypes.string.isRequired
+  })).isRequired,
+  Preview: PropTypes.func.isRequired
 }
 
 export default FilterCards
