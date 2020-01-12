@@ -5,7 +5,7 @@ module.exports = {
       name: 'Ole Martin Ruud',
       nickname: 'barskern',
       description: 'Rust 🦀, Web 🕸️ and Linux 🐧',
-      email: 'barskern@outlook.com',
+      email: 'dev@barskern.no',
       urls: {
         'github': 'https://github.com/barskern'
       }
