@@ -21,7 +21,7 @@
     "gatsby-remark-smartypants": "^1.4.3",
     "gatsby-source-filesystem": "^1.5.36",
     "gatsby-transformer-json": "^1.0.18",
-    "gatsby-transformer-remark": "^1.7.1",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^1.6.1",
     "moment": "^2.20.1",
     "prismjs": "^1.11.0",
